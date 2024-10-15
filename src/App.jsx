@@ -1,10 +1,12 @@
-// src/App.jsx
-export default function App() {
+import './App.css'
+
+const App = () => {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold text-blue-600">
-        Hello MX-Bill Team, Let's Butild it together 💪🏻🎉.
-      </h1>
+    <div className='h-screen w-screen'>
+      <h1 className='text-4xl text-green-400 font-urbanist-black-italic'> App</h1>
+
     </div>
   )
 }
+
+export default App
