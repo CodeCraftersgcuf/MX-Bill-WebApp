@@ -1,4 +1,4 @@
-import { ImageURISource } from 'react-native';
+// import { ImageURISource } from 'react-native';
 
 import addFileOutline from '../assets/icons/add-file-outline.png';
 import addFile from '../assets/icons/add-file.png';
