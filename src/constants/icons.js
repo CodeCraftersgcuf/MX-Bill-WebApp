@@ -373,7 +373,7 @@ import mcdonalds from '../assets/icons/mcdonalds.png';
 import netflix from '../assets/icons/netflix.png';
 import airbnb from '../assets/icons/airbnb.png';
 import amazon from '../assets/icons/amazon.png';
-
+import backgroundProfile from '../assets/icons/backgroundImage.png';
 const icons = {
   addFileOutline,
   addFile,
@@ -689,7 +689,7 @@ const icons = {
   masterCard,
   visa,
   bank,
-
+  backgroundProfile,
   electricity,
   games,
   health,
