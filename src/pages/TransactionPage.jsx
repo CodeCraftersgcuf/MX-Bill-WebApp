@@ -1,6 +1,6 @@
-import LeftSideBar from "../components/LeftSideBar";
-import TransactionPageTop from "../components/TransactionPageTop";
-import TransactionHistoryTable from '../components/TransactionHistoryTable';
+import LeftSideBar from "../components/LeftSideBar/LeftSideBar";
+import TransactionPageTop from "../components/Transaction/TransactionPageTop";
+import TransactionHistoryTable from '../components/Transaction/TransactionHistoryTable';
 const TranscationPage = () => {
   return (
     <div className="flex">

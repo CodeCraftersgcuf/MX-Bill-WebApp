@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { icons } from "../constants";
+import { icons } from "../../constants";
 import LeftSideBarTab from "./LeftSideBarTab";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
+// eslint-disable-next-line react/prop-types
 const LeftSideBar = ({ currentTab = "Home" }) => {  // Default value for currentTab is "Home"
   const [selectedTab, setSelectedTab] = useState(currentTab);  // Default to currentTab
 

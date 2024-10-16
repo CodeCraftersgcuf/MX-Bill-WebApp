@@ -1,4 +1,4 @@
-import { icons } from "../constants";
+import { icons } from "../../constants";
 const PaymentCard = () => {
   return (
     <div className="bg-primary text-white flex justify-between p-6 w-2/4 rounded-3xl ">

@@ -17,19 +17,21 @@ const ProfileComponent = () => {
   };
 
   return (
-    <div className="relative flex justify-center mb-4">
-      <img
-        src={profileImage}
-        alt="Profile"
-        className="rounded-full w-24 h-24  object-cover"
-      />
-      <button
-        onClick={handleImageUpload}
-        className="absolute bottom-0 right-36 bg-blue-500 text-white rounded-full p-2"
-        aria-label="Edit Profile Picture"
-      >
-     <img src={icons.edit3} alt="Edit" className="w-5 h-5" />
-      </button>
+    <div className="flex justify-center mb-4">
+      <span className="relative">
+        <img
+          src={profileImage}
+          alt="Profile"
+          className="rounded-full w-28 h-28  object-cover"
+        />
+        <button
+          onClick={handleImageUpload}
+          className="absolute right-0 bottom-0 bg-blue-500 text-white rounded-full p-2"
+          aria-label="Edit Profile Picture"
+        >
+          <img src={icons.edit3} alt="Edit" className="w-5 h-5" />
+        </button>
+      </span>
       <input
         type="file"
         accept="image/*"

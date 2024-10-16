@@ -1,6 +1,6 @@
-import LeftSideBar from "./LeftSideBar";
-import MiddleDashBoard from "./MiddleDashBoard";
-import RightSideBar from "./RightSideBar";
+import LeftSideBar from "./LeftSideBar/LeftSideBar";
+import MiddleDashBoard from "./DashBoard/MiddleDashBoard";
+import RightSideBar from "./RightSideBar/RightSideBar";
 
 const DashBoard = () => {
   return (

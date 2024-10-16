@@ -1,4 +1,4 @@
-import { icons } from "../constants";
+import { icons } from "../../constants";
 import ServiceCard from "./ServiceCard";
 const Services = () => {
   return (
