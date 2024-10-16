@@ -1,4 +1,3 @@
-import React from "react";
 import Input from "../components/Input";
 import logo from "../assets/images/logo.png";
 import { Link } from "react-router-dom";
@@ -87,7 +86,7 @@ const LoginPage = () => {
           Forgot Password?
         </div>
         <div className="text-black">
-          Don't have an account?{" "}
+          Dont have an account?{" "}
           <Link to="/signup" className="text-blue-500 hover:text-blue-700">
             Sign Up
           </Link>

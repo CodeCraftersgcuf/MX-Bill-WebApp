@@ -1,5 +1,3 @@
-import React from "react";
-
 const Input = ({ id, label, error, icon, type, ...props }) => {
   return (
     <div className="mb-4">

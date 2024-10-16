@@ -1,11 +1,10 @@
 // SignupPage.js
-import React from "react";
 import Input from "../components/Input";
 import logo from "../assets/images/logo.png";
 import { icons } from "../constants";
 import { Link } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
-import { hasMinLength, isEmail, isNotEmpty, isEqualsToOtherValue, isStrongPassword } from "../util/validation.js"; // Import isStrongPassword
+import { isEmail, isNotEmpty, isEqualsToOtherValue, isStrongPassword } from "../util/validation.js"; // Import isStrongPassword
 import { toast } from 'react-hot-toast'; 
 
 const SignupPage = () => {

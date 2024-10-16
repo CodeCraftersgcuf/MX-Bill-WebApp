@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { icons } from "../constants";
 const ProfileComponent = () => {
   const fileInputRef = useRef(null);

@@ -10,6 +10,9 @@ import LoginPage from './auth/LoginPage'
 import SignUpPage from './auth/SignupPage'
 import { Toaster } from 'react-hot-toast'
 import StatisticsPage from './pages/stats/statisticsPage'
+import SendMoney from './pages/SendMoney'
+import RequestMoney from './pages/RequestMoney'
+import InAndOut from './pages/InAndOut'
 
 
 const App = () => {
@@ -22,16 +25,18 @@ const App = () => {
     { path: '/dashboard', element: <DashBoard /> },
     { path: '/transactionpage', element: <TransactionPage /> },
     { path: '/statistics', element: <StatisticsPage />},
+    { path: "/sendmoney", element: <SendMoney /> },
+    { path: "/requestmoney", element: <RequestMoney /> },
+    { path: "/inandout", element: <InAndOut /> },
   ])
 
-  console.log(theme.COLORS)
+  console.log(theme.COLORS);
   return (
     <>
-    <RouterProvider router={router} />
-    <Toaster position="top-right" />
+      <RouterProvider router={router} />
+      <Toaster position="top-right" />
     </>
+  );
+};
 
-  )
-}
-
-export default App
+export default App;
