@@ -9,12 +9,20 @@ const MiddleDashBoard = () => {
         <PaymentCard />
         <div className="ms-10">
           <div className="flex justify-evenly mb-3">
-            <Transaction iconSrc={icons.send} text="Transfer" />
-            <Transaction iconSrc={icons.sendMoney} text="Send" />
+            <Transaction iconSrc={icons.send} text="Transfer" sendTo="" />
+            <Transaction iconSrc={icons.sendMoney} text="Send" sendTo="/sendmoney" />
           </div>
           <div className="flex justify-evenly">
-            <Transaction iconSrc={icons.arrowDownSquare} text="Request" />
-            <Transaction iconSrc={icons.upAndDownArrow} text="In & Out" />
+            <Transaction
+              iconSrc={icons.arrowDownSquare}
+              text="Request"
+              sendTo="/requestmoney"
+            />
+            <Transaction
+              iconSrc={icons.upAndDownArrow}
+              text="In & Out"
+              sendTo="/inandout"
+            />
           </div>
         </div>
       </div>

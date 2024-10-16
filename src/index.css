@@ -126,3 +126,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.activeTab {
+  color: white;
+  background: #007bff;
+}

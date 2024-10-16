@@ -1,6 +1,7 @@
 import { icons } from "../../constants";
 import RightSideProfileImage from "./RightSideProfileImage";
 import RightSideProfileInfo from "./RightSideProfileInfo";
+import Notification from "../Notification";
 const RightSideBar = () => {
   return (
     <div className="w-1/5">
@@ -11,6 +12,9 @@ const RightSideBar = () => {
       />
       <div className="mt-16"></div>
       <RightSideProfileInfo name={"Adrin Hajdin"} email={"adrin@smaster.pro"} />
+      <div className="border-t">
+        <Notification />
+      </div>
     </div>
   );
 };
