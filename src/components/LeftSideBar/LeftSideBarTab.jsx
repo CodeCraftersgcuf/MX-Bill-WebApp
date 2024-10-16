@@ -1,5 +1,6 @@
 import { theme } from "../../constants";
 
+// eslint-disable-next-line react/prop-types
 const LeftSideBarTab = ({ imageIcon, text, isSelected, onClick }) => {
   // Apply conditional styles based on whether the tab is selected
   const bgColor = isSelected ? theme.COLORS.info : "transparent";
