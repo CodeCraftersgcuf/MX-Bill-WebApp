@@ -9,6 +9,7 @@ import GetProfileInfo from './auth/GetProfileInfo'
 import LoginPage from './auth/LoginPage'
 import SignUpPage from './auth/SignupPage'
 import { Toaster } from 'react-hot-toast'
+import StatisticsPage from './pages/stats/statisticsPage'
 
 
 const App = () => {
@@ -19,7 +20,8 @@ const App = () => {
     { path: '/signup', element: <SignUpPage />},
     { path: '/colorscheme', element: <ColorScheme /> },
     { path: '/dashboard', element: <DashBoard /> },
-    { path: '/transactionpage', element: <TransactionPage /> }, // Fixed typo here
+    { path: '/transactionpage', element: <TransactionPage /> },
+    { path: '/statistics', element: <StatisticsPage />},
   ])
 
   console.log(theme.COLORS)
