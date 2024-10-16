@@ -1,4 +1,4 @@
-import { icons } from "../constants";
+import { icons } from "../../constants";
 import PaymentCard from "./PaymentCard";
 import Transaction from "./Transaction";
 import Services from "./Services";

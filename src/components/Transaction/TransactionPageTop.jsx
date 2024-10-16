@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { icons } from "../constants";
-import TransactionAmountCard from "../components/TransactionAmountCard";
+import { icons } from "../../constants";
+import TransactionAmountCard from "./TransactionAmountCard";
 
 const TransactionPageTop = () => {
   const [selectedAccount, setSelectedAccount] = useState("Plaid Checking");

@@ -1,4 +1,4 @@
-import { theme } from "../constants";
+import { theme } from "../../constants";
 import BalanceCard from "./BalanceCard";
 const bgColor = theme.COLORS.info;
 const TransactionAmountCard = () => {

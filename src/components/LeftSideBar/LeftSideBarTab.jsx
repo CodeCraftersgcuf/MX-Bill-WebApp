@@ -1,4 +1,4 @@
-import { theme } from "../constants";
+import { theme } from "../../constants";
 
 const LeftSideBarTab = ({ imageIcon, text, isSelected, onClick }) => {
   // Apply conditional styles based on whether the tab is selected
