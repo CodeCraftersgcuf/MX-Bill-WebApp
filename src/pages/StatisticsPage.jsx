@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import LeftSideBar from '../../components/LeftSideBar/LeftSideBar';
-import RightSideBar from '../../components/RightSideBar/RightSideBar';
-import StatsNavigation from '../../components/Statistics/StatsNavigation';
-import StatsGraph from '../../components/Statistics/StatsGraph';
-import Summary from '../../components/Statistics/StatsSummary'; // Import the Summary component
+import LeftSideBar from '../components/LeftSideBar/LeftSideBar';
+import RightSideBar from '../components/RightSideBar/RightSideBar';
+import StatsNavigation from '../components/Statistics/StatsNavigation';
+import StatsGraph from '../components/Statistics/StatsGraph';
+import Summary from '../components/Statistics/StatsSummary'; // Import the Summary component
 
 const StatisticsPage = () => {
     const [period, setPeriod] = useState('Month');
@@ -37,7 +37,7 @@ const StatisticsPage = () => {
   
     return (
       <div className="min-h-screen flex">
-        <LeftSideBar />
+        <LeftSideBar  currentTab={"Statistics"}/>
         <section className="flex-grow p-4">
           <StatsNavigation period={period} setPeriod={setPeriod} />
           <StatsGraph income={currentData.income} expense={currentData.expense} period={period} />
