@@ -5,7 +5,7 @@ const TransactionAmountCard = () => {
   return (
     <>
       <div
-        className="w-[95%] flex justify-between mt-5 p-3 px-4 rounded-md"
+        className=" flex justify-between mt-5 p-3 px-4 rounded-md"
         style={{ backgroundColor: bgColor }}
       >
         <div className="flex flex-col text-white">

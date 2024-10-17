@@ -6,7 +6,7 @@ const TranscationPage = () => {
   return (
     <div className="flex">
       <LeftSideBar currentTab={"Transaction History"} />
-      <div className="flex flex-col w-3/5">
+      <div className="flex flex-col w-3/5 mx-[32px]">
         <TransactionPageTop />
         <TransactionHistoryTable />
       </div>
