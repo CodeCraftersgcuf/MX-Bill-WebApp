@@ -16,8 +16,8 @@ const TransactionPageTop = () => {
   };
 
   return (
-    <div className="mt-10 w-full">
-      <div className="flex justify-between me-36">
+    <div className="mt-10">
+      <div className="flex justify-between items-center">
         <div className="flex flex-col ">
           <h1 className="text-xl font-bold">Transaction History</h1>
           <p className="text-gray-600">

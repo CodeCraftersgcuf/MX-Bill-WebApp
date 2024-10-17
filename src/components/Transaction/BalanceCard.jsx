@@ -1,11 +1,10 @@
 import { theme } from "../../constants";
-const bgColor = theme.COLORS.gray3;
 
 const BalanceCard = ({ balance = "0.00" }) => {
   return (
-    <div className="w-full h-full flex me-3 flex-col text-center text-white" style={{ backgroundColor: bgColor }}>
-      <h1>Current Balance</h1>
-      <p>${balance}</p>
+    <div className="text-center bg-blue-500 text-white py-3 rounded-md px-2">
+      <h1 className="font-urbanist-bold">Current Balance</h1>
+      <p className="font-urbanist-bold">${balance}</p>
     </div>
   )
 };

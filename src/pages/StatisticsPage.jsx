@@ -38,7 +38,7 @@ const StatisticsPage = () => {
     return (
       <div className="min-h-screen flex">
         <LeftSideBar  currentTab={"Statistics"}/>
-        <section className="flex-grow p-4">
+        <section className="flex-grow m-4">
           <StatsNavigation period={period} setPeriod={setPeriod} />
           <StatsGraph income={currentData.income} expense={currentData.expense} period={period} />
 
