@@ -9,7 +9,7 @@ const LeftSideBarTab = ({ imageIcon, text, isSelected, onClick }) => {
 
   return (
     <div
-      className={`flex items-center w-[80%] ms-10 p-2 py-4 rounded-lg cursor-pointer ${textColor}`}
+      className={`flex items-center w-[80%] ms-4 p-2 py-4 rounded-lg cursor-pointer ${textColor}`}
       style={{ backgroundColor: bgColor }} // Inline style for dynamic background color
       onClick={onClick} // Handle click event to change the selected tab
     >

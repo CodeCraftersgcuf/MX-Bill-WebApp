@@ -13,12 +13,13 @@ import StatisticsPage from './pages/StatisticsPage'
 import SendMoney from './pages/SendMoney'
 import RequestMoney from './pages/RequestMoney'
 import InAndOut from './pages/InAndOut'
+import Notifications from './pages/Notifications'
 
 
 const App = () => {
   const router = createBrowserRouter([
     { path: '/', element: <HomePage /> },
-    {path: '/profileInfo', element: <GetProfileInfo />},
+    { path: '/profileInfo', element: <GetProfileInfo /> },
     { path: '/login', element: <LoginPage />},
     { path: '/signup', element: <SignUpPage />},
     { path: '/colorscheme', element: <ColorScheme /> },
@@ -28,6 +29,7 @@ const App = () => {
     { path: "/sendmoney", element: <SendMoney /> },
     { path: "/requestmoney", element: <RequestMoney /> },
     { path: "/inandout", element: <InAndOut /> },
+    { path: '/notificationpage', element: <Notifications /> }
   ])
 
   console.log(theme.COLORS);

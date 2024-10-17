@@ -1,7 +1,7 @@
 import { icons } from "../../constants";
 const PaymentCard = () => {
   return (
-    <div className="bg-primary text-white flex justify-between p-6 w-2/4 rounded-3xl ">
+    <div className="bg-primary text-white flex justify-between p-6 xl:w-2/4 2xl:w-2/4 rounded-3xl ">
       <div className="mt-2">
         <div className="mb-5">
           <h2 className="font-urbanist-medium text-xl mb-1">Andrew Ainsley</h2>
