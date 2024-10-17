@@ -1,7 +1,7 @@
 // eslint-disable-next-line react/prop-types
 const ServiceCard = ({ imageSrc, textContent }) => {
   return (
-    <div className="text-center bg-slate-200 py-6 px-8 rounded-3xl">
+    <div className="text-center bg-slate-100 py-6 px-10 rounded-3xl">
       <div>
         <img className="w-full" src={imageSrc} alt="" />
       </div>

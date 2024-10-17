@@ -9,7 +9,7 @@ const LeftSideBar = ({ currentTab = "Home" }) => {
   const [selectedTab, setSelectedTab] = useState(currentTab); // Default to currentTab
 
   return (
-    <div className="w-1/5 flex flex-col gap-3 mt-10">
+    <div className="w-1/5 flex flex-col gap-3 pt-10 bg-slate-100">
       <Link to="/dashboard">
         {" "}
         {/* Link for Dashboard */}
