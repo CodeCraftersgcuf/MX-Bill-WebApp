@@ -5,6 +5,7 @@ const LeftSideBarTab = ({ imageIcon, text, isSelected, onClick }) => {
   // Apply conditional styles based on whether the tab is selected
   const bgColor = isSelected ? theme.COLORS.info : "transparent";
   const textColor = isSelected ? "text-white" : "text-black";
+  const isFilter = isSelected ? "invert(1)" : "invert(0)";
 
   return (
     <div
@@ -12,7 +13,7 @@ const LeftSideBarTab = ({ imageIcon, text, isSelected, onClick }) => {
       style={{ backgroundColor: bgColor }} // Inline style for dynamic background color
       onClick={onClick} // Handle click event to change the selected tab
     >
-      <img className="w-6" src={imageIcon} alt="Side Bar Icon" />
+      <img className={`w-6 h-6`} src={imageIcon} alt="Side Bar Icon" style={{ filter: isFilter }}  />
       <h1 className="ms-5">{text}</h1>
     </div>
   );
