@@ -1,19 +1,17 @@
-// SignupPage.js
 import Input from "../components/Input";
 import logo from "../assets/images/logo.png";
 import { icons } from "../constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useInput } from "../hooks/useInput";
-import { isEmail, isNotEmpty, isEqualsToOtherValue, isStrongPassword } from "../util/validation.js"; // Import isStrongPassword
-import { toast } from 'react-hot-toast'; 
+import { isEmail, isNotEmpty, isEqualsToOtherValue, isStrongPassword } from "../util/validation";
+import { toast } from 'react-hot-toast';
+import { useMutation } from '@tanstack/react-query';
+import { registerUser } from '../api/auth';  // Import the API function
 
 const SignupPage = () => {
-  const clearForm = () => {
-    handleEmailUserInput({ target: { value: "" } });
-    handlePasswordUserInput({ target: { value: "" } });
-    handleConfirmPasswordUserInput({ target: { value: "" } });
-  }
+  const navigate = useNavigate();  // Hook to navigate programmatically
 
+  // Input handling
   const {
     value: emailValue,
     handleInputBlur: handleEmailBlur,
@@ -35,17 +33,54 @@ const SignupPage = () => {
     hasError: confirmPasswordHasError,
   } = useInput("", (value) => isNotEmpty(value) && isEqualsToOtherValue(value, passwordValue));
 
+  // Mutation to handle the signup API call
+  const { mutate: signup, isLoading } = useMutation({
+    mutationFn: registerUser,  // The API call function
+    onSuccess: (data) => {
+      // Log success response
+      console.log('Signup success response:', data);
+
+      if (data && data.user && data.user.id) {
+        toast.success(data.message || "Signup successful!");  // Show success message
+        // Redirect to OTP page with user_id
+        navigate('/otp', { state: { userId: data.user.id } });
+      } else {
+        toast.error('Signup successful, but no user ID found.');
+      }
+    },
+    onError: (error) => {
+      console.error('Signup error:', error.response);
+
+      // Display error messages from the API or a default message
+      const errorMessage = error.response?.data?.message || "Signup failed due to unknown error.";
+      toast.error(errorMessage);  
+    }
+  });
+
+  // Form submission handler
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Validate input fields
     if (emailHasError || passwordHasError || confirmPasswordHasError) {
+      toast.error("Please fill out the form correctly.");
       return;
     }
 
-    toast.success("Sign up successful!");
-    clearForm();
-    console.log(emailValue, passwordValue);
+    // Prepare user data for signup
+    const userData = {
+      email: emailValue,
+      password: passwordValue,
+      confirmPassword: confirmPasswordValue
+    };
+
+    // Log the data being sent for debugging
+    console.log('User data being sent:', userData);
+
+    // Trigger the signup mutation
+    signup(userData);
   }
-  
+
   return (
     <div className="flex flex-col items-center justify-center bg-gray-900 mt-16">
       <div className="bg-gray-800 rounded-lg p-8 bg-grayscale100 w-[30%]">
@@ -90,15 +125,17 @@ const SignupPage = () => {
             error={confirmPasswordHasError && "Passwords do not match"}
           />
           <Input type="checkbox" label="By continuing you accept our Privacy Policy" />
+          
+          {/* Disable the button when loading */}
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-urbanist-bold py-3 font-bold rounded-full mt-4"
+            className={`w-full py-3 font-bold rounded-full mt-4 ${isLoading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600 text-white'}`}
+            disabled={isLoading}
           >
-            Sign Up
+            {isLoading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
-        <div className="my-4 text-blue-700 cursor-pointer">
-        </div>
+        <div className="my-4 text-blue-700 cursor-pointer"></div>
         <div className="text-black">
           Already have an account?
           <Link to='/login' className="text-blue-500 hover:text-blue-700">
