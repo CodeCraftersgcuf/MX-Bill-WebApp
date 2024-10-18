@@ -14,7 +14,7 @@ import SendMoney from './pages/SendMoney'
 import RequestMoney from './pages/RequestMoney'
 import InAndOut from './pages/InAndOut'
 import Notifications from './pages/Notifications'
-
+import UserProfile from './pages/UserProfile'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -29,7 +29,8 @@ const App = () => {
     { path: "/sendmoney", element: <SendMoney /> },
     { path: "/requestmoney", element: <RequestMoney /> },
     { path: "/inandout", element: <InAndOut /> },
-    { path: '/notificationpage', element: <Notifications /> }
+    { path: '/notificationpage', element: <Notifications /> },
+    { path: '/userProfile', element: <UserProfile /> },
   ])
 
   console.log(theme.COLORS);
