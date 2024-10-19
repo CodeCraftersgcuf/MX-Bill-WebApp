@@ -14,6 +14,7 @@ import StatisticsPage from "./pages/StatisticsPage";
 import SendMoney from "./pages/SendMoney";
 import RequestMoney from "./pages/RequestMoney";
 import InAndOut from "./pages/InAndOut";
+import UserProfile from './pages/UserProfile';
 import Notifications from "./pages/Notifications";
 import OtpInputWithValidation from "./pages/Otp";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -35,6 +36,7 @@ const App = () => {
     { path: "/inandout", element: <InAndOut /> },
     { path: "/notificationpage", element: <Notifications /> },
     { path: "/otp", element: <OtpInputWithValidation /> },
+    {path: "/userprofile", element: <UserProfile />}
   ]);
 
   return (
