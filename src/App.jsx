@@ -1,25 +1,29 @@
+import React from 'react';
 import "./App.css";
-import { theme } from "./constants";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ColorScheme from "./pages/ColorScheme";
 import HomePage from "./pages/HomePage";
 import DashBoard from "./components/DashBoard";
 import TransactionPage from "./pages/TransactionPage";
-import GetProfileInfo from "./auth/GetProfileInfo";
-import LoginPage from "./auth/LoginPage";
-import SignUpPage from "./auth/SignupPage";
+import GetProfileInfo from "./pages/auth/GetProfileInfo";
+import LoginPage from "./pages/auth/LoginPage";
+import SignUpPage from "./pages/auth/SignupPage";
 import { Toaster } from "react-hot-toast";
 import StatisticsPage from "./pages/StatisticsPage";
 import SendMoney from "./pages/SendMoney";
 import RequestMoney from "./pages/RequestMoney";
 import InAndOut from "./pages/InAndOut";
+import UserProfile from './pages/UserProfile';
 import Notifications from "./pages/Notifications";
-import UserProfile from "./pages/UserProfile";
+import OtpInputWithValidation from "./pages/Otp";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   const router = createBrowserRouter([
     { path: "/", element: <HomePage /> },
-    { path: "/profileInfo", element: <GetProfileInfo edit={false} /> },
+    { path: "/profileInfo", element: <GetProfileInfo /> },
     { path: "/login", element: <LoginPage /> },
     { path: "/signup", element: <SignUpPage /> },
     { path: "/colorscheme", element: <ColorScheme /> },
@@ -30,6 +34,8 @@ const App = () => {
     { path: "/requestmoney", element: <RequestMoney /> },
     { path: "/inandout", element: <InAndOut /> },
     { path: "/notificationpage", element: <Notifications /> },
+    { path: "/otp", element: <OtpInputWithValidation /> },
+    {path: "/userprofile", element: <UserProfile />},
     {
       path: "/userProfile",
       element: <UserProfile />,
@@ -37,12 +43,11 @@ const App = () => {
     { path: '/userEdit', element: <GetProfileInfo edit={true} /> },
   ]);
 
-  console.log(theme.COLORS);
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
       <Toaster position="top-right" />
-    </>
+    </QueryClientProvider>
   );
 };
 

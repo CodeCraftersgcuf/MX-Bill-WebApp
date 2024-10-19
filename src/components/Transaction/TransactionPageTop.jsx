@@ -1,23 +1,28 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { icons } from "../../constants";
+import { dropDownActions } from "../../store/dropDownSlice";
 import TransactionAmountCard from "./TransactionAmountCard";
 
 const TransactionPageTop = () => {
-  const [selectedAccount, setSelectedAccount] = useState("Plaid Checking");
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const selectedAccount = useSelector(
+    (state) => state.dropDown.selectedAccount
+  );
+  const isOpen = useSelector((state) => state.dropDown.isOpen);
 
   const options = ["Plaid Checking", "Plaid Savings", "Plaid Investment"];
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
+  function toggleDropdownHandler() {
+    dispatch(dropDownActions.toggleDropdown());
+  }
 
   const handleSelect = (option) => {
-    setSelectedAccount(option);
-    setIsOpen(false);
+    dispatch(dropDownActions.setSelectedAccount(option));
   };
 
   return (
-    <div className="mt-10">
-      <div className="flex justify-between items-center">
+    <div className="mt-10 w-full">
+      <div className="flex justify-between me-36">
         <div className="flex flex-col ">
           <h1 className="text-xl font-bold">Transaction History</h1>
           <p className="text-gray-600">
@@ -28,7 +33,7 @@ const TransactionPageTop = () => {
           {/* Dropdown Implementation */}
           <div
             className="flex items-center cursor-pointer border border-gray-300 p-2 rounded-md w-52"
-            onClick={toggleDropdown}
+            onClick={toggleDropdownHandler}
           >
             <img
               src={icons.walletOutline}
@@ -56,7 +61,7 @@ const TransactionPageTop = () => {
         </div>
       </div>
       <div>
-        <TransactionAmountCard/>
+        <TransactionAmountCard />
       </div>
     </div>
   );

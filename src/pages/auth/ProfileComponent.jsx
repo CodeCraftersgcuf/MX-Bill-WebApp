@@ -1,14 +1,5 @@
-import { useRef, useState, useEffect } from "react";
-
-const ProfileComponent = ({
-  initialImage, // Passed image source
-  onImageChange,
-  editIcon,
-  buttonStyles = "absolute right-0 bottom-0 bg-blue-500 text-white rounded-full p-2",
-  imageStyles = "rounded-full w-28 h-28 object-cover",
-  imgAlt = "Profile",
-  buttonAlt = "Edit Profile Picture",
-}) => {
+import { useRef, useState } from "react";
+const ProfileComponent = () => {
   const fileInputRef = useRef(null);
   const [profileImage, setProfileImage] = useState(initialImage);
 
