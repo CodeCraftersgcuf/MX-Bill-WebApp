@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { icons } from "../constants";
+import { icons } from "../../constants";
 const ProfileComponent = () => {
   const fileInputRef = useRef(null);
   const [profileImage, setProfileImage] = useState(icons.userDefault2);

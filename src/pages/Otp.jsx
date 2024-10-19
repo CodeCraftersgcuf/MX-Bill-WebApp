@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { verifyOtp } from '../api/auth';
+import { verifyEmailOtp } from '../util/queries/authMutations';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
+import PrimaryBtn from '../components/PrimaryBtn';
 
 function OtpInputWithValidation({ numberOfDigits = 4 }) {
   const [otp, setOtp] = useState(new Array(numberOfDigits).fill(""));
@@ -13,15 +14,16 @@ function OtpInputWithValidation({ numberOfDigits = 4 }) {
   const userId = state?.userId;
 
   // Use Mutation to verify OTP
-  const { mutate: verifyOtpMutation, isLoading } = useMutation({
-    mutationFn: verifyOtp,
+  const { mutate: verifyOtpMutation, isPending } = useMutation({
+    mutationFn: verifyEmailOtp,
     onSuccess: (data) => {
       toast.success("OTP verified successfully!");
+      console.log(data);
       navigate("/dashboard");
     },
     onError: (error) => {
-      const errorMessage = error.response?.data?.message || "Invalid OTP, please try again.";
-      toast.error(errorMessage);  // Show detailed error message from API
+      console.log(error);
+      toast.error(error.message);  // Show detailed error message from API
     }
   });
 
@@ -99,13 +101,12 @@ function OtpInputWithValidation({ numberOfDigits = 4 }) {
       )}
 
       {/* Submit Button with Loading State */}
-      <button
+      <PrimaryBtn
         onClick={handleOtpSubmit}
-        className={`bg-blue-500 text-white px-4 py-2 mt-6 rounded-md hover:bg-blue-600 ${isLoading ? 'cursor-not-allowed bg-gray-400' : ''}`}
-        disabled={isLoading}  // Disable button while verifying OTP
+        disabled={isPending}
       >
-        {isLoading ? "Verifying..." : "Verify OTP"}
-      </button>
+        {isPending ? "Verifying..." : "Verify OTP"}
+      </PrimaryBtn>
     </article>
   );
 }
