@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
-const Transaction = ({ iconSrc, text, sendTo }) => {
+const Transaction = ({ iconSrc, text, sendTo, ...props }) => {
   console.log(iconSrc);
   return (
-    <div className="w-1/4 text-center">
-      <Link to={sendTo}>
-        <div className="bg-slate-100 p-6 rounded-full">
-          <img className="w-full" src={iconSrc} alt="" />
+    <Link to={sendTo}>
+      <div {...props}>
+        <div className="flex items-center">
+          <div className="w-14 pe-4">
+            <img src={iconSrc} alt="" />
+          </div>
+          <div className="font-urbanist-bold">{text}</div>
         </div>
-        <div className="font-urbanist-bold">{text}</div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
