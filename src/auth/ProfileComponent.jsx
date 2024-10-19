@@ -1,8 +1,21 @@
-import { useRef, useState } from "react";
-import { icons } from "../constants";
-const ProfileComponent = () => {
+import { useRef, useState, useEffect } from "react";
+
+const ProfileComponent = ({
+  initialImage, // Passed image source
+  onImageChange,
+  editIcon,
+  buttonStyles = "absolute right-0 bottom-0 bg-blue-500 text-white rounded-full p-2",
+  imageStyles = "rounded-full w-28 h-28 object-cover",
+  imgAlt = "Profile",
+  buttonAlt = "Edit Profile Picture",
+}) => {
   const fileInputRef = useRef(null);
-  const [profileImage, setProfileImage] = useState(icons.userDefault2);
+  const [profileImage, setProfileImage] = useState(initialImage);
+
+  // Update profileImage state if initialImage prop changes
+  useEffect(() => {
+    setProfileImage(initialImage);
+  }, [initialImage]);
 
   const handleImageUpload = () => {
     fileInputRef.current.click(); // Trigger the file input click
@@ -13,6 +26,9 @@ const ProfileComponent = () => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
+      if (onImageChange) {
+        onImageChange(imageUrl); // Notify parent component of image change
+      }
     }
   };
 
@@ -21,15 +37,15 @@ const ProfileComponent = () => {
       <span className="relative">
         <img
           src={profileImage}
-          alt="Profile"
-          className="rounded-full w-28 h-28  object-cover"
+          alt={imgAlt}
+          className={imageStyles}
         />
         <button
           onClick={handleImageUpload}
-          className="absolute right-0 bottom-0 bg-blue-500 text-white rounded-full p-2"
-          aria-label="Edit Profile Picture"
+          className={buttonStyles}
+          aria-label={buttonAlt}
         >
-          <img src={icons.edit3} alt="Edit" className="w-5 h-5" />
+          <img src={editIcon} alt={buttonAlt} className="w-5 h-5" />
         </button>
       </span>
       <input

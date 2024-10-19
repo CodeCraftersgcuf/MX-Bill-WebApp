@@ -1,27 +1,14 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { icons } from "../../constants"; // Adjust the path if necessary
 import logo from "../../assets/images/logo.png";
 import { FaRegCreditCard, FaRegUserCircle, FaDollarSign } from "react-icons/fa"; // Importing icons from react-icons
+import ProfileComponent from "../../auth/ProfileComponent";
 
 const TopCard = () => {
   const [profileImage, setProfileImage] = useState(icons.userDefault3);
-  const fileInputRef = useRef(null);
 
-  const handleImageUpload = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setProfileImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+  const handleImageChange = (newImageUrl) => {
+    setProfileImage(newImageUrl); // Update the profile image on change
   };
 
   return (
@@ -33,27 +20,12 @@ const TopCard = () => {
 
       <section className="w-full bg-slate-100 p-10 rounded-lg shadow-md my-5 flex items-center justify-between">
         <div className="flex items-center">
-          <div className="w-28 h-28 rounded-full bg-white overflow-hidden border-4 border-blue-500 flex justify-center items-center relative">
-            <img
-              src={profileImage}
-              alt="User Profile"
-              className="w-full h-full object-cover"
-            />
-            <button
-              onClick={handleImageUpload}
-              className="absolute right-0 bottom-0 bg-blue-500 text-white rounded-full p-2 z-10"
-              aria-label="Edit Profile Picture"
-            >
-              <img src={icons.edit3} alt="Edit" className="w-5 h-5" />
-            </button>
-            <input
-              type="file"
-              accept="image/*"
-              ref={fileInputRef}
-              onChange={handleFileChange}
-              className="hidden"
-            />
-          </div>
+          <ProfileComponent
+            initialImage={profileImage} // Pass the current profile image
+            onImageChange={handleImageChange} // Update the parent state on image change
+            editIcon={icons.edit3} // Reuse the edit icon
+            customClass="w-28 h-28 rounded-full bg-white overflow-hidden border-4 border-blue-500" // Apply custom styling
+          />
           <div className="ml-5">
             <h2 className="text-2xl font-semibold">Nathalie Erneson</h2>
             <p className="text-gray-600">nathalie_erneson@gmail.com</p>
@@ -70,7 +42,7 @@ const TopCard = () => {
               <FaRegCreditCard className="text-gray-600 w-5 h-5" />
               <p className="text-gray-500">Account Type: Savings</p>
             </div>
-            <div className="flex items-center  space-x-3 mt-2 ps-3">
+            <div className="flex items-center space-x-3 mt-2 ps-3">
               <FaRegUserCircle className="text-gray-600 w-5 h-5" />
               <p className="text-gray-500">Account Number: **** **** 1234</p>
             </div>
