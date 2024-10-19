@@ -9,9 +9,15 @@ const Services = () => {
           View All
         </button>
       </div>
-      <div className="grid grid-cols-4 gap-10">
+      <div className="grid grid-cols-5 gap-10">
         <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
         <ServiceCard imageSrc={icons.television} textContent="AirTime" />
+        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
+        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
+        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
+        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
+        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
+        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
         <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
         <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
         <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />

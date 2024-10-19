@@ -10,7 +10,7 @@ const PeopleListToSend = ({
   return (
     <div {...props}>
       <Link to=''>
-        <div className="flex items-center justify-between bg-slate-200 rounded">
+        <div className="flex items-center justify-between bg-slate-100 rounded">
           <div className="flex items-center">
             <div className="px-8 text-xl border-e-2">{UserId}</div>
             <div className="ms-7">
