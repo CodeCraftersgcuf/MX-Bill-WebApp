@@ -12,7 +12,7 @@ const ListItems = () => {
     { icon: icons.security, text: "Security", link: "/security" },
     { icon: icons.bookmarkOutline, text: "Language and Region", language: "English (US)", link: "/language-region" },
     { icon: icons.lock, text: "Privacy Policy", link: "/privacy-policy" },
-    { icon: icons.walletOutline, text: "Help Center", link: "/help-center" },
+    { icon: icons.walletOutline, text: "Help Center", link: "/helpCenter" },
   ];
 
   return (
