@@ -1,6 +1,5 @@
 import React from 'react';
 import "./App.css";
-import { theme } from "./constants";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ColorScheme from "./pages/ColorScheme";
 import HomePage from "./pages/HomePage";
@@ -36,7 +35,12 @@ const App = () => {
     { path: "/inandout", element: <InAndOut /> },
     { path: "/notificationpage", element: <Notifications /> },
     { path: "/otp", element: <OtpInputWithValidation /> },
-    {path: "/userprofile", element: <UserProfile />}
+    {path: "/userprofile", element: <UserProfile />},
+    {
+      path: "/userProfile",
+      element: <UserProfile />,
+    },
+    { path: '/userEdit', element: <GetProfileInfo edit={true} /> },
   ]);
 
   return (
