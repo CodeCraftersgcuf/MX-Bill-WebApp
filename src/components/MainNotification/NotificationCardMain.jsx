@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-const NotificationCard = ({ title, message, date, icon, ...props }) => {
+const NotificationCardMain = ({ title, message, date, icon, ...props }) => {
   return (
     <div {...props}>
       <Link to="">
@@ -12,9 +12,9 @@ const NotificationCard = ({ title, message, date, icon, ...props }) => {
                 </div>
               </div>
               <div>
-                <div className="font-urbanist-bold text-[12px]">{title}</div>
-                <div className="font-urbanist-bold text-[10px]">{message}</div>
-                <div className="text-[12px] absolute top-[5px] right-[10px]">
+                <div className="font-urbanist-bold text-lg">{title}</div>
+                <div className="font-urbanist-bold text-sm">{message}</div>
+                <div className="absolute top-[5px] right-[10px] text-sm">
                   {date}
                 </div>
               </div>
@@ -26,4 +26,4 @@ const NotificationCard = ({ title, message, date, icon, ...props }) => {
   );
 };
 
-export default NotificationCard;
+export default NotificationCardMain;
