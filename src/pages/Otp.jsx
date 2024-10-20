@@ -1,133 +1,133 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { verifyEmailOtp, resendOtp } from '../util/queries/authMutations';
-import { toast } from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router-dom';
-import PrimaryBtn from '../components/PrimaryBtn';
+  import React, { useRef, useEffect, useState } from 'react';
+  import { useMutation } from '@tanstack/react-query';
+  import { verifyEmailOtp, resendOtp } from '../util/queries/authMutations';
+  import { toast } from 'react-hot-toast';
+  import { useLocation, useNavigate } from 'react-router-dom';
+  import PrimaryBtn from '../components/PrimaryBtn';
 
-function OtpInputWithValidation({ numberOfDigits = 4 }) {
-  const [otp, setOtp] = useState(new Array(numberOfDigits).fill(""));
-  const [resendTimer, setResendTimer] = useState(0);  // 60-second timer state
-  const otpBoxReference = useRef([]);
-  const navigate = useNavigate();
-  
-  // Get userId and email from the state passed from the signup page
-  const { state } = useLocation();
-  const userId = state?.userId;
-  const email = state?.email;
+  function OtpInputWithValidation({ numberOfDigits = 4 }) {
+    const [otp, setOtp] = useState(new Array(numberOfDigits).fill(""));
+    const [resendTimer, setResendTimer] = useState(0);  // 60-second timer state
+    const otpBoxReference = useRef([]);
+    const navigate = useNavigate();
+    
+    // Get userId and email from the state passed from the signup page
+    const { state } = useLocation();
+    const userId = state?.userId;
+    const email = state?.email;
 
-  // Mutation to verify OTP
-  const { mutate: verifyOtpMutation, isPending } = useMutation({
-    mutationFn: verifyEmailOtp,
-    onSuccess: (data) => {
-      toast.success("OTP verified successfully!");
-      navigate("/dashboard");
-    },
-    onError: (error) => {
-      console.log(error);
-      toast.error(error.message);  // Show detailed error message from API
+    // Mutation to verify OTP
+    const { mutate: verifyOtpMutation, isPending } = useMutation({
+      mutationFn: verifyEmailOtp,
+      onSuccess: (data) => {
+        toast.success("OTP verified successfully!");
+        navigate("/dashboard");
+      },
+      onError: (error) => {
+        console.log(error);
+        toast.error(error.message);  // Show detailed error message from API
+      }
+    });
+
+    // Mutation to resend OTP
+    const { mutate: resendOtpMutation, isLoading: isResending } = useMutation({
+      mutationFn: resendOtp,
+      onSuccess: (data) => {
+        toast.success(data.message || 'OTP sent successfully!');
+        setResendTimer(60);  // Start the 60-second timer after successful resend
+      },
+      onError: (error) => {
+        console.log(error);
+        toast.error(error.message || 'Failed to resend OTP');
+      }
+    });
+
+    // Handle input change
+    function handleChange(value, index) {
+      let newArr = [...otp];
+      newArr[index] = value;
+      setOtp(newArr);
+
+      if (value && index < numberOfDigits - 1) {
+        otpBoxReference.current[index + 1].focus();
+      }
     }
-  });
 
-  // Mutation to resend OTP
-  const { mutate: resendOtpMutation, isLoading: isResending } = useMutation({
-    mutationFn: resendOtp,
-    onSuccess: (data) => {
-      toast.success(data.message || 'OTP sent successfully!');
-      setResendTimer(60);  // Start the 60-second timer after successful resend
-    },
-    onError: (error) => {
-      console.log(error);
-      toast.error(error.message || 'Failed to resend OTP');
+    // Handle Backspace and Enter key for navigation between OTP inputs
+    function handleBackspaceAndEnter(e, index) {
+      if (e.key === "Backspace" && index > 0 && !otp[index]) {
+        otpBoxReference.current[index - 1].focus();  // Move back to previous input
+      }
+      if (e.key === "Enter" && e.target.value && index < numberOfDigits - 1) {
+        otpBoxReference.current[index + 1].focus();  // Move forward to next input
+      }
     }
-  });
 
-  // Handle input change
-  function handleChange(value, index) {
-    let newArr = [...otp];
-    newArr[index] = value;
-    setOtp(newArr);
+    // Submit OTP for verification
+    const handleOtpSubmit = () => {
+      const otpValue = otp.join("");
+      if (otpValue.length === numberOfDigits) {
+        verifyOtpMutation({
+          user_id: userId?.toString(),
+          otp: otpValue
+        });
+      } else {
+        toast.error("Please enter a valid OTP.");
+      }
+    };
 
-    if (value && index < numberOfDigits - 1) {
-      otpBoxReference.current[index + 1].focus();
-    }
+    // Resend OTP handler
+    const handleResendOtp = () => {
+      // Ensure email is passed to resendOtp mutation
+      if (!resendTimer && email) {
+        resendOtpMutation({ email });  // Send the user's email to the resend OTP API
+      } else if (!email) {
+        toast.error('Email is required to resend OTP.');
+      }
+    };
+
+    // Timer effect for 60 seconds
+    useEffect(() => {
+      if (resendTimer > 0) {
+        const timerId = setTimeout(() => setResendTimer(resendTimer - 1), 1000);
+        return () => clearTimeout(timerId);
+      }
+    }, [resendTimer]);
+
+    return (
+      <article className="flex flex-col items-center h-screen bg-gray-800">
+        <p className="text-2xl font-medium mt-12 text-center">OTP Input With Validation</p>
+        <p className="text-base text-white mt-4 bg-[#323232] p-4 rounded-md text-center max-w-lg">
+          Enter the OTP sent to your email. If incorrect, you'll see an error message below.
+        </p>
+
+        <p className="text-base mt-6 mb-4">One Time Password (OTP)</p>
+
+        <div className="flex items-center justify-center gap-4">
+          {otp.map((digit, index) => (
+            <input
+              key={index}
+              value={digit}
+              maxLength={1}
+              onChange={(e) => handleChange(e.target.value, index)}
+              onKeyUp={(e) => handleBackspaceAndEnter(e, index)}
+              ref={(reference) => (otpBoxReference.current[index] = reference)}
+              className="border w-16 h-16 text-center text-xl p-3 rounded-md text-white bg-blue-500 focus:border-2 focus:outline-none"
+            />
+          ))}
+        </div>
+
+        {/* Submit Button with Loading State */}
+        <PrimaryBtn onClick={handleOtpSubmit} disabled={isPending}>
+          {isPending ? "Verifying..." : "Verify OTP"}
+        </PrimaryBtn>
+
+        {/* Resend OTP Button with Timer */}
+        <PrimaryBtn onClick={handleResendOtp} disabled={resendTimer > 0 || isResending} className="mt-4">
+          {resendTimer > 0 ? `Resend OTP in ${resendTimer}s` : isResending ? "Resending..." : "Resend OTP"}
+        </PrimaryBtn>
+      </article>
+    );
   }
 
-  // Handle Backspace and Enter key for navigation between OTP inputs
-  function handleBackspaceAndEnter(e, index) {
-    if (e.key === "Backspace" && index > 0 && !otp[index]) {
-      otpBoxReference.current[index - 1].focus();  // Move back to previous input
-    }
-    if (e.key === "Enter" && e.target.value && index < numberOfDigits - 1) {
-      otpBoxReference.current[index + 1].focus();  // Move forward to next input
-    }
-  }
-
-  // Submit OTP for verification
-  const handleOtpSubmit = () => {
-    const otpValue = otp.join("");
-    if (otpValue.length === numberOfDigits) {
-      verifyOtpMutation({
-        user_id: userId?.toString(),
-        otp: otpValue
-      });
-    } else {
-      toast.error("Please enter a valid OTP.");
-    }
-  };
-
-  // Resend OTP handler
-  const handleResendOtp = () => {
-    // Ensure email is passed to resendOtp mutation
-    if (!resendTimer && email) {
-      resendOtpMutation({ email });  // Send the user's email to the resend OTP API
-    } else if (!email) {
-      toast.error('Email is required to resend OTP.');
-    }
-  };
-
-  // Timer effect for 60 seconds
-  useEffect(() => {
-    if (resendTimer > 0) {
-      const timerId = setTimeout(() => setResendTimer(resendTimer - 1), 1000);
-      return () => clearTimeout(timerId);
-    }
-  }, [resendTimer]);
-
-  return (
-    <article className="flex flex-col items-center h-screen bg-gray-800">
-      <p className="text-2xl font-medium mt-12 text-center">OTP Input With Validation</p>
-      <p className="text-base text-white mt-4 bg-[#323232] p-4 rounded-md text-center max-w-lg">
-        Enter the OTP sent to your email. If incorrect, you'll see an error message below.
-      </p>
-
-      <p className="text-base mt-6 mb-4">One Time Password (OTP)</p>
-
-      <div className="flex items-center justify-center gap-4">
-        {otp.map((digit, index) => (
-          <input
-            key={index}
-            value={digit}
-            maxLength={1}
-            onChange={(e) => handleChange(e.target.value, index)}
-            onKeyUp={(e) => handleBackspaceAndEnter(e, index)}
-            ref={(reference) => (otpBoxReference.current[index] = reference)}
-            className="border w-16 h-16 text-center text-xl p-3 rounded-md text-white bg-blue-500 focus:border-2 focus:outline-none"
-          />
-        ))}
-      </div>
-
-      {/* Submit Button with Loading State */}
-      <PrimaryBtn onClick={handleOtpSubmit} disabled={isPending}>
-        {isPending ? "Verifying..." : "Verify OTP"}
-      </PrimaryBtn>
-
-      {/* Resend OTP Button with Timer */}
-      <PrimaryBtn onClick={handleResendOtp} disabled={resendTimer > 0 || isResending} className="mt-4">
-        {resendTimer > 0 ? `Resend OTP in ${resendTimer}s` : isResending ? "Resending..." : "Resend OTP"}
-      </PrimaryBtn>
-    </article>
-  );
-}
-
-export default OtpInputWithValidation;
+  export default OtpInputWithValidation;

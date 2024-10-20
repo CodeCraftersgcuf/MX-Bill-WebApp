@@ -2,7 +2,7 @@ import Input from "../../components/Input";
 import logo from "../../assets/images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { icons } from "../../constants";
-import { toast } from 'react-hot-toast'; // Import toast
+import { toast } from "react-hot-toast"; // Import toast
 import { Formik, Form } from "formik";
 import { loginSchema } from "../../util/validationSchemas";
 import PrimaryBtn from "../../components/PrimaryBtn";
@@ -10,28 +10,33 @@ import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "../../util/queries/authMutations";
 
 const LoginPage = () => {
-  const navigate = useNavigate()
-  const { mutate: login, isPending, } = useMutation({
+  const navigate = useNavigate();
+  // LoginPage.js
+  const { mutate: login, isPending } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
       console.log(data);
       toast.success("Login successful!");
-      navigate('/dashboard')
-      // Show success toast
+
+      // Store token in localStorage
+      localStorage.setItem("authToken", data.token);
+
+      // Redirect to dashboard after login
+      navigate("/dashboard");
     },
     onError: (error) => {
       console.log(error);
       toast.error(error.message);
     },
-  })
+  });
 
   const handleSubmit = (data) => {
     console.log(data);
-    const { email, password } = data
+    const { email, password } = data;
     login({
       email,
-      password
-    })
+      password,
+    });
   };
 
   return (
@@ -50,7 +55,7 @@ const LoginPage = () => {
         >
           {({ values, errors, touched, handleBlur, handleChange }) => (
             <Form>
-              {['email', 'password'].map((field) => (
+              {["email", "password"].map((field) => (
                 <Input
                   key={field}
                   id={field}
@@ -61,7 +66,7 @@ const LoginPage = () => {
                   onBlur={handleBlur}
                   onChange={handleChange}
                   error={touched[field] && errors[field]}
-                  icon={field === 'email' ? icons.email : icons.padlock}
+                  icon={field === "email" ? icons.email : icons.padlock}
                 />
               ))}
               <Input
@@ -71,11 +76,8 @@ const LoginPage = () => {
                 onChange={handleChange}
                 checked={values.rememberMe}
               />
-              <PrimaryBtn
-                type="submit"
-                disabled={isPending}
-              >
-                {isPending ? 'Logging In...' : "Login"}
+              <PrimaryBtn type="submit" disabled={isPending}>
+                {isPending ? "Logging In..." : "Login"}
               </PrimaryBtn>
             </Form>
           )}
