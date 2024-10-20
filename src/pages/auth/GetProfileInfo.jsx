@@ -3,16 +3,13 @@ import Input from "../../components/Input";
 import { icons } from "../../constants";
 import { useInput } from "../../hooks/useInput";
 import { Link } from "react-router-dom";
-import { isEmail, isNotEmpty } from "../../util/validation.js";
 import { toast } from "react-hot-toast";
 import ProfileComponent from "./ProfileComponent.jsx";
 
-
-const GetProfileInfo = () => {
+const GetProfileInfo = ({ edit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Check for any input errors before submission
     if (
       fullNameHasError ||
       nicknameHasError ||
@@ -24,10 +21,11 @@ const GetProfileInfo = () => {
       return;
     }
 
-    // If no errors, show success toast and clear form
-    toast.success("Profile information submitted successfully!");
-
-    // Clear input values after submission
+    toast.success(
+      edit
+        ? "Profile information updated successfully!"
+        : "Profile created successfully!"
+    );
     clearForm();
   };
 
@@ -39,48 +37,50 @@ const GetProfileInfo = () => {
     handlePhoneNumberUserInput({ target: { value: "" } });
   };
 
-
   const {
     value: fullNameValue,
     handleInputBlur: handleFullNameBlur,
     handleUserInput: handleFullNameUserInput,
     hasError: fullNameHasError,
-  } = useInput("", (value) => isNotEmpty(value));
+  } = useInput("", (value) => value.trim().length > 0);
 
   const {
     value: nicknameValue,
     handleInputBlur: handleNicknameBlur,
     handleUserInput: handleNicknameUserInput,
     hasError: nicknameHasError,
-  } = useInput("", (value) => isNotEmpty(value));
+  } = useInput("", (value) => value.trim().length > 0);
 
   const {
     value: emailValue,
     handleInputBlur: handleEmailBlur,
     handleUserInput: handleEmailUserInput,
     hasError: emailHasError,
-  } = useInput("", (value) => isEmail(value) && isNotEmpty(value));
+  } = useInput("", (value) => value.includes("@") && value.trim().length > 0);
 
   const {
     value: phoneNumberValue,
     handleInputBlur: handlePhoneNumberBlur,
     handleUserInput: handlePhoneNumberUserInput,
     hasError: phoneNumberHasError,
-  } = useInput("", (value) => isNotEmpty(value));
+  } = useInput("", (value) => value.trim().length > 0);
 
   const {
     value: dateValue,
     handleInputBlur: handleDateBlur,
     handleUserInput: handleDateUserInput,
     hasError: dateHasError,
-  } = useInput("", (value) => isNotEmpty(value));
+  } = useInput("", (value) => value.trim().length > 0);
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-900 mt-16">
       <div className="bg-gray-800 rounded-lg p-8 bg-grayscale100 w-[30%]">
-        <ProfileComponent />
+        <ProfileComponent
+          initialImage={icons.userDefault3}
+          editIcon={icons.edit3}
+        />
         <h1 className="text-3xl text-center font-bold mb-8 text-black">
-          Fill your Profile
+          {edit ? "Edit Profile" : "Create Profile"}
         </h1>
         <form onSubmit={handleSubmit}>
           <Input
@@ -127,7 +127,6 @@ const GetProfileInfo = () => {
             value={dateValue}
             error={dateHasError && "Please enter a valid Date of Birth."}
           />
-
           <Input
             id="phone"
             type="tel"
@@ -141,9 +140,13 @@ const GetProfileInfo = () => {
           />
           <button
             type="submit"
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-full mt-4"
+            className={`w-full ${
+              edit
+                ? "bg-green-500 hover:bg-green-600"
+                : "bg-blue-500 hover:bg-blue-600"
+            } text-white font-bold py-3 rounded-full mt-4`}
           >
-            Submit
+            {edit ? "Update Profile" : "Submit"}
           </button>
         </form>
       </div>

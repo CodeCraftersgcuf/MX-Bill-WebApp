@@ -35,7 +35,12 @@ const App = () => {
     { path: "/inandout", element: <InAndOut /> },
     { path: "/notificationpage", element: <Notifications /> },
     { path: "/otp", element: <OtpInputWithValidation /> },
-    {path: "/userprofile", element: <UserProfile />}
+    {path: "/userprofile", element: <UserProfile />},
+    {
+      path: "/userProfile",
+      element: <UserProfile />,
+    },
+    { path: '/userEdit', element: <GetProfileInfo edit={true} /> },
   ]);
 
   return (

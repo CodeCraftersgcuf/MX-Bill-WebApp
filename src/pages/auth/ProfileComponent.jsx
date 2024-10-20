@@ -1,8 +1,12 @@
-import { useRef, useState } from "react";
-import { icons } from "../../constants";
-const ProfileComponent = () => {
+import { useRef, useState, useEffect } from "react";
+
+const ProfileComponent = ({ initialImage, onImageChange, editIcon }) => {
   const fileInputRef = useRef(null);
-  const [profileImage, setProfileImage] = useState(icons.userDefault2);
+  const [profileImage, setProfileImage] = useState(initialImage);
+
+  useEffect(() => {
+    setProfileImage(initialImage);
+  }, [initialImage]);
 
   const handleImageUpload = () => {
     fileInputRef.current.click(); // Trigger the file input click
@@ -13,6 +17,9 @@ const ProfileComponent = () => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       setProfileImage(imageUrl);
+      if (onImageChange) {
+        onImageChange(imageUrl); // Notify parent component of image change
+      }
     }
   };
 
@@ -22,14 +29,14 @@ const ProfileComponent = () => {
         <img
           src={profileImage}
           alt="Profile"
-          className="rounded-full w-28 h-28  object-cover"
+          className="w-32 h-32 rounded-full object-cover border-4 border-blue-500"
         />
         <button
           onClick={handleImageUpload}
-          className="absolute right-0 bottom-0 bg-blue-500 text-white rounded-full p-2"
-          aria-label="Edit Profile Picture"
+          className="absolute bottom-0 right-0 bg-gray-900 p-2 rounded-full border-2 bg-blue-500 border-white"
+          aria-label="Edit Profile Image"
         >
-          <img src={icons.edit3} alt="Edit" className="w-5 h-5" />
+          <img src={editIcon} alt="Edit" className="w-5 h-5" />
         </button>
       </span>
       <input

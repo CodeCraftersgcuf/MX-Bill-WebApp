@@ -9,24 +9,18 @@ const Services = () => {
           View All
         </button>
       </div>
-      <div className="grid grid-cols-5 gap-10">
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.television} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
+      <div className="grid grid-cols-5 gap-10 my-">
+        <ServiceCard imageSrc={icons.electricity} textContent="Electricity" />
+        <ServiceCard imageSrc={icons.internet2} textContent="Internet" />
+        <ServiceCard imageSrc={icons.water} textContent="Water" />
+        <ServiceCard imageSrc={icons.wallet} textContent="E-Wallet" />
+        <ServiceCard imageSrc={icons.games} textContent="Games" />
+        <ServiceCard imageSrc={icons.television} textContent="Television" />
+        <ServiceCard imageSrc={icons.shopping} textContent="Shopping" />
+        <ServiceCard imageSrc={icons.installment} textContent="Installment" />
+        <ServiceCard imageSrc={icons.bell} textContent="AirTime" />
+        <ServiceCard imageSrc={icons.camera} textContent="Camera" />
       </div>
-      {/* <div className="flex mt-8">
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-        <ServiceCard imageSrc={icons.airbnb} textContent="AirTime" />
-      </div> */}
     </div>
   );
 };
