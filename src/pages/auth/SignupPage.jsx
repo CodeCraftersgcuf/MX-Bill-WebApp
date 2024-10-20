@@ -14,13 +14,14 @@ const SignupPage = () => {
 
   // Mutation to handle the signup API call
   const { mutate: signup, isPending } = useMutation({
-    mutationFn: registerUser,  // The API call function
-    onSuccess: (data) => {
+    mutationFn: registerUser,
+    onSuccess: (data, variables) => {  // `variables` will hold the form data, including the email
       console.log('Signup success response:', data);
+      const email = variables.email;  // Use the email from form data
       if (data?.user_id) {
         toast.success(data.message || "Signup successful!");
-        // Redirect to OTP page with user_id
-        navigate('/otp', { state: { userId: data.user_id } });
+        // Pass the email from form data explicitly
+        navigate('/otp', { state: { userId: data.user_id, email } });
       } else {
         toast.error('Signup successful, but no user ID found.');
       }
@@ -32,9 +33,9 @@ const SignupPage = () => {
   });
 
   // Form submission handler
-  const handleSubmit = (data) => {
-    console.log(data);
-    signup(data);
+  const handleSubmit = (values) => {
+    console.log('Form submitted with:', values);
+    signup(values);  // Pass the form values (including email) to the signup mutation
   }
 
   return (
@@ -48,7 +49,7 @@ const SignupPage = () => {
         </h1>
         <Formik
           initialValues={{ email: '', password: '', confirmPassword: '', acceptTerms: false }}
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit}  // Call handleSubmit on form submission
           validationSchema={signupSchema}
         >
           {({ errors, touched, handleBlur, handleChange, values }) => (
