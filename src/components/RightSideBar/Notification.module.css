@@ -1,0 +1,18 @@
+.scrollableNotification {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .scrollableNotification::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollableNotification::-webkit-scrollbar-thumb {
+    background-color: #1e90ff; 
+    border-radius: 10px;
+  }
+  
+  .scrollableNotification::-webkit-scrollbar-track {
+    background-color: #f0f0f0; 
+  }
+  

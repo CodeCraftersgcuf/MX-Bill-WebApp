@@ -3,11 +3,9 @@ import Transaction from "./Transaction";
 import AnalysisChart from "./AnalysisChart";
 import transferIcon from "../../assets/icons/svg-icons/transfer.svg";
 import Services from "./Services";
-import Navigation from "../Navigation";
 const MiddleDashBoard = () => {
   return (
-    <div className="w-3/5">
-      <Navigation />
+    <div>
       <div className="mt-8">
         <div className="mx-[32px]">
           <div className="h-full">
@@ -36,7 +34,7 @@ const MiddleDashBoard = () => {
             <AnalysisChart />
           </div>
         </div>
-        <hr className="mt-5 border-slate-300 mx-[34px]" />
+        <hr className="mt-5 border-slate-300 ms-[34px]" />
         <Services />
       </div>
     </div>

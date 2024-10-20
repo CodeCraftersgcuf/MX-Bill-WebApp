@@ -7,16 +7,18 @@ const InAndOutCardContent = ({
   money,
   ...props
 }) => {
+  const incomColor = 'text-green-600'
+  const expenseColor = 'text-red'
   return (
     <div {...props}>
       <div className="bg-slate-100 flex items-center justify-around py-3">
         <div className="w-16">
           <img src={image} alt="" />
         </div>
-        <div>{name}</div>
+        <div className="font-urbanist-bold">{name}</div>
         <div>{date}</div>
         <div>{time}</div>
-        <div>{incomeType}</div>
+        <div className={incomeType === 'income' ? incomColor : expenseColor}>{incomeType}</div>
         <div>{money}</div>
       </div>
     </div>
