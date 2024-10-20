@@ -8,7 +8,7 @@ import DashBoard from "./components/DashBoard";
 import TransactionPage from "./pages/TransactionPage";
 import GetProfileInfo from "./pages/auth/GetProfileInfo";
 import LoginPage from "./pages/auth/LoginPage";
-import SignupPage from "./pages/auth/SignUpPage";
+import SignupPage from "./pages/auth/SignupPage";
 import { Toaster } from "react-hot-toast";
 import StatisticsPage from "./pages/StatisticsPage";
 import SendMoney from "./pages/SendMoney";
