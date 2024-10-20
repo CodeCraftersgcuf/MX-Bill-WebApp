@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
-const ProfileComponent = () => {
+import { useRef, useState, useEffect } from "react";
+
+const ProfileComponent = ({ initialImage, onImageChange, editIcon }) => {
   const fileInputRef = useRef(null);
   const [profileImage, setProfileImage] = useState(initialImage);
 
-  // Update profileImage state if initialImage prop changes
   useEffect(() => {
     setProfileImage(initialImage);
   }, [initialImage]);
@@ -28,15 +28,15 @@ const ProfileComponent = () => {
       <span className="relative">
         <img
           src={profileImage}
-          alt={imgAlt}
-          className={imageStyles}
+          alt="Profile"
+          className="w-32 h-32 rounded-full object-cover border-4 border-blue-500"
         />
         <button
           onClick={handleImageUpload}
-          className={buttonStyles}
-          aria-label={buttonAlt}
+          className="absolute bottom-0 right-0 bg-gray-900 p-2 rounded-full border-2 bg-blue-500 border-white"
+          aria-label="Edit Profile Image"
         >
-          <img src={editIcon} alt={buttonAlt} className="w-5 h-5" />
+          <img src={editIcon} alt="Edit" className="w-5 h-5" />
         </button>
       </span>
       <input

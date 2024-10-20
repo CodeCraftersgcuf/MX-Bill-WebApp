@@ -3,11 +3,10 @@ import Input from "../../components/Input";
 import { icons } from "../../constants";
 import { useInput } from "../../hooks/useInput";
 import { Link } from "react-router-dom";
-import { isEmail, isNotEmpty } from "../../util/validation.js";
 import { toast } from "react-hot-toast";
 import ProfileComponent from "./ProfileComponent.jsx";
 
-const GetProfileInfo = ({ edit = true }) => {
+const GetProfileInfo = ({ edit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
