@@ -17,7 +17,6 @@ const LoginPage = () => {
     onSuccess: (data) => {
       console.log(data);
       toast.success("Login successful!");
-
       // Store token in localStorage
       localStorage.setItem("authToken", data.token);
 
