@@ -1,6 +1,6 @@
 const RightSideProfileInfo = ({ name, email }) => {
   return (
-    <div className="flex flex-col gap-1 ms-4">
+    <div className="flex flex-col gap-1 text-center">
       {/* Name with bold text and increased size */}
       <h1 className="font-bold text-xl">{name}</h1>
 

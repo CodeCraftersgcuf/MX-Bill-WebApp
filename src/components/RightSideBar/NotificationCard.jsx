@@ -4,7 +4,7 @@ const NotificationMain = ({ title, message, date, icon, ...props }) => {
     <div {...props}>
       <Link to="">
         <div>
-          <div className="flex items-center justify-between bg-slate-200 rounded relative">
+          <div className="flex items-center justify-between bg-slate-100 rounded relative">
             <div className="flex px-3 py-3 items-center">
               <div className="pe-3 w-10">
                 <div className="w-5">
@@ -12,8 +12,8 @@ const NotificationMain = ({ title, message, date, icon, ...props }) => {
                 </div>
               </div>
               <div>
-                <div className="font-urbanist-bold text-[14px]">{title}</div>
-                <div className="font-urbanist-bold text-[12px]">{message}</div>
+                <div className="font-urbanist-bold text-[12px]">{title}</div>
+                <div className="font-urbanist-bold text-[10px]">{message}</div>
                 <div className="text-[12px] absolute top-[5px] right-[10px]">
                   {date}
                 </div>

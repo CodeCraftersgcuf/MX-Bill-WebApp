@@ -1,6 +1,5 @@
 import React from 'react';
 import "./App.css";
-import { theme } from "./constants";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ColorScheme from "./pages/ColorScheme";
 import HomePage from "./pages/HomePage";

@@ -1,22 +1,13 @@
-const RightSideProfileImage = ({ backgroundProfile, userProfile }) => {
-    return (
-      <div className="relative w-full">
-        {/* Background image */}
-        <img
-          src={backgroundProfile}
-          alt="Background Profile Picture"
-          className="h-28 w-full object-cover"
-        />
-  
-        {/* Profile picture - Positioned on top of the background */}
-        <img
-          src={userProfile}
-          alt="Profile Picture"
-          className="w-24 h-24 rounded-full absolute left-[60px] transform -translate-x-1/2 -translate-y-1/2 top-full"
-        />
-      </div>
-    );
-  };
-  
-  export default RightSideProfileImage;
-  
+const RightSideProfileImage = ({ userProfile }) => {
+  return (
+    <div className="mt-5 pt-5 mb-3 flex justify-center">
+      <img
+        src={userProfile}
+        alt="Profile Picture"
+        className="w-20 h-20 rounded-full"
+      />
+    </div>
+  );
+};
+
+export default RightSideProfileImage;

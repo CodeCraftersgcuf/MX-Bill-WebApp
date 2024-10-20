@@ -1,15 +1,13 @@
 import { icons } from "../../constants";
-import PaymentCard from "./PaymentCard";
+import PaymentCard from "../PaymentCard";
 import Transaction from "./Transaction";
 import transferIcon from "../../assets/icons/svg-icons/transfer.svg";
 import Services from "./Services";
-import Navigation from "../Navigation";
 const MiddleDashBoard = () => {
   return (
-    <div className="w-3/5">
-      <Navigation />
+    <div>
       <div className="mt-8">
-        <div className="flex justify-between mx-[32px]">
+        <div className="flex justify-between ms-[32px]">
           <PaymentCard />
           <div className="w-2/4">
             <div className="ms-5 flex flex-col justify-between h-full">
@@ -44,7 +42,7 @@ const MiddleDashBoard = () => {
             </div>
           </div>
         </div>
-        <hr className="mt-5 border-slate-300 mx-[34px]" />
+        <hr className="mt-5 border-slate-300 ms-[34px]" />
         <Services />
       </div>
     </div>
