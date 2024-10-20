@@ -5,7 +5,7 @@ import RSNotification from "./RSNotification";
 import PaymentCard from "../PaymentCard";
 const RightSideBar = () => {
   return (
-    <div className=" rounded-lg shadow-lg shadow-slate-300">
+    <div className="rounded-lg shadow-lg shadow-slate-300">
       {/* Passing the props (background image and profile image) to RightSideProfileImage */}
       <RightSideProfileImage
         backgroundProfile={icons.backgroundProfile} // Background image prop

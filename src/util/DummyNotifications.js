@@ -39,7 +39,7 @@ export const DUMMY_NOTIFICATIONS = [
   {
     id: 5,
     type: "success",
-    title: "Payment Successful",
+    title: "Payment",
     message: "Your payment of $50 has been processed.",
     autoDismiss: true,
     icon: icons.notification,

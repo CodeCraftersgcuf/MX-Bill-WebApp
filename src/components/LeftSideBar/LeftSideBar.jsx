@@ -9,13 +9,13 @@ const LeftSideBar = ({ currentTab = "Home" }) => {
   const [selectedTab, setSelectedTab] = useState(currentTab); // Default to currentTab
 
   return (
-    <div className="w-1/5 flex flex-col gap-3 pt-5 bg-slate-100 ps-4">
-      <Link className=" mb-4">
+    <div className="lg:w-1/4 xl:w-1/5 flex flex-col gap-3 pt-5 bg-slate-100 ps-4">
+      <Link className="mb-4 me-4 lg:me-0">
         <div className="flex items-center">
-          <div className="w-14">
+          <div className="w-10 lg:w-14">
             <img src={icons.activity2} alt="" />
           </div>
-          <div className="text-xl font-urbanist-bold ps-3">All Pay Pro</div>
+          <div className="hidden lg:block text-xl font-urbanist-bold ps-3">All Pay Pro</div>
         </div>
       </Link>
       <Link to="/dashboard">

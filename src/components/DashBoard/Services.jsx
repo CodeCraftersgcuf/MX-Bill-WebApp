@@ -9,7 +9,7 @@ const Services = () => {
           View All
         </button>
       </div>
-      <div className="grid grid-cols-5 gap-10 my-">
+      <div className="grid grid-cols-4 lg:grid-cols-5 gap-10 mb-5">
         <ServiceCard imageSrc={icons.electricity} textContent="Electricity" />
         <ServiceCard imageSrc={icons.internet2} textContent="Internet" />
         <ServiceCard imageSrc={icons.water} textContent="Water" />
