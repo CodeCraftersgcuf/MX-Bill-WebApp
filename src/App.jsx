@@ -16,6 +16,7 @@ import InAndOut from "./pages/InAndOut";
 import UserProfile from './pages/UserProfile';
 import Notifications from "./pages/Notifications";
 import OtpInputWithValidation from "./pages/Otp";
+import ResetPassword from './pages/ResetPassword';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ const App = () => {
       element: <UserProfile />,
     },
     { path: '/userEdit', element: <GetProfileInfo edit={true} /> },
+    {path: '/resetpassword', element: <ResetPassword />}
   ]);
 
   return (
