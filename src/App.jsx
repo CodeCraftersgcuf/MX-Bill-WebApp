@@ -16,7 +16,7 @@ import RequestMoney from "./pages/RequestMoney";
 import InAndOut from "./pages/InAndOut";
 import UserProfile from "./pages/UserProfile";
 import Notifications from "./pages/Notifications";
-import ResetPassword from "./pages/ResetPassword";
+// import ResetPassword from "./pages/ResetPassword";
 import Logout from "./pages/Logout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import HelpCenter from "./pages/HelpCenter";
@@ -45,8 +45,8 @@ const App = () => {
     { path: "/signup", element: <SignupPage /> },
     { path: "/colorscheme", element: <ColorScheme /> },
     { path: "/otp-verfication", element: <OtpVerification /> },
-    { path: "/reset", element: <ResetPassword /> },
-    { path: "/resetpassword", element: <ResetPassword /> },
+    // { path: "/reset", element: <ResetPassword /> },
+    // { path: "/resetpassword", element: <ResetPassword /> },
 
     // Redirect '/' to login if not authenticated
     {
@@ -66,9 +66,9 @@ const App = () => {
     {
       path: "/profileInfo",
       element: (
-        <ProtectedRoute>
-          <GetProfileInfo />
-        </ProtectedRoute>
+        // <ProtectedRoute>
+        <GetProfileInfo />
+        // </ProtectedRoute>
       ),
     },
     {

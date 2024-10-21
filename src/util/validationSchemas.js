@@ -25,3 +25,15 @@ export const signupSchema = Yup.object().shape({
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm password is required'),
 });
+
+export const individualSchema = Yup.object().shape({
+  firstName: Yup.string().required('First name is required'),
+  lastName: Yup.string().required('Last name is required'),
+  bvn: Yup.string()
+    .matches(/^\d{11}$/)
+    .required('BVN is required'),
+  dob: Yup.string().required('Date of birth is required'),
+  phone: Yup.string()
+    .matches(/^\d{10}$/)
+    .required('Phone number is required'),
+});

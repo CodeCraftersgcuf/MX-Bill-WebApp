@@ -5,72 +5,53 @@ import { useInput } from "../../hooks/useInput";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import ProfileComponent from "./ProfileComponent.jsx";
+import { useMutation } from "@tanstack/react-query";
+import { createIndividualAccount } from "../../util/queries/accountsMutations.js";
+import { Formik, Form } from "formik";
+import PrimaryBtn from "../../components/PrimaryBtn.jsx";
+import { individualSchema } from "../../util/validationSchemas.js";
+import DateInput from "../../components/DateInput.jsx";
 
 const GetProfileInfo = ({ edit }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    if (
-      fullNameHasError ||
-      nicknameHasError ||
-      emailHasError ||
-      dateHasError ||
-      phoneNumberHasError
-    ) {
-      toast.error("Please fill out all fields correctly before submitting.");
-      return;
+  const [image, setImage] = React.useState(null)
+  const { mutate, isPending } = useMutation({
+    mutationFn: createIndividualAccount,
+    onSuccess: (data) => {
+      console.log(data);
     }
+  })
 
-    toast.success(
-      edit
-        ? "Profile information updated successfully!"
-        : "Profile created successfully!"
-    );
-    clearForm();
+
+  const handleImage = (imageData) => {
+    console.log(imageData);
+    setImage(imageData)
   };
 
-  const clearForm = () => {
-    handleFullNameUserInput({ target: { value: "" } });
-    handleNicknameUserInput({ target: { value: "" } });
-    handleEmailUserInput({ target: { value: "" } });
-    handleDateUserInput({ target: { value: "" } });
-    handlePhoneNumberUserInput({ target: { value: "" } });
+  const handleSubmit = (data) => {
+
+    console.log(data);
+    // if (!image) {
+    //   toast.error("Please upload an image")
+    //   return
+    // }
+
+    const formData = new FormData()
+    // formData.append('profilePicture', image)
+    formData.append('userId', '18')
+    formData.append('firstName', data.firstName)
+    formData.append('lastName', data.lastName)
+    formData.append('bvn', data.bvn)
+    formData.append('dob', data.dob)
+    formData.append('phone', data.phone)
+    mutate(formData)
+
+    // if (data.dob === )
+    // toast.success(
+    //   edit
+    //     ? "Profile information updated successfully!"
+    //     : "Profile created successfully!"
+    // );
   };
-
-  const {
-    value: fullNameValue,
-    handleInputBlur: handleFullNameBlur,
-    handleUserInput: handleFullNameUserInput,
-    hasError: fullNameHasError,
-  } = useInput("", (value) => value.trim().length > 0);
-
-  const {
-    value: nicknameValue,
-    handleInputBlur: handleNicknameBlur,
-    handleUserInput: handleNicknameUserInput,
-    hasError: nicknameHasError,
-  } = useInput("", (value) => value.trim().length > 0);
-
-  const {
-    value: emailValue,
-    handleInputBlur: handleEmailBlur,
-    handleUserInput: handleEmailUserInput,
-    hasError: emailHasError,
-  } = useInput("", (value) => value.includes("@") && value.trim().length > 0);
-
-  const {
-    value: phoneNumberValue,
-    handleInputBlur: handlePhoneNumberBlur,
-    handleUserInput: handlePhoneNumberUserInput,
-    hasError: phoneNumberHasError,
-  } = useInput("", (value) => value.trim().length > 0);
-
-  const {
-    value: dateValue,
-    handleInputBlur: handleDateBlur,
-    handleUserInput: handleDateUserInput,
-    hasError: dateHasError,
-  } = useInput("", (value) => value.trim().length > 0);
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-900 mt-16">
@@ -78,77 +59,69 @@ const GetProfileInfo = ({ edit }) => {
         <ProfileComponent
           initialImage={icons.userDefault3}
           editIcon={icons.edit3}
+          onImageChange={handleImage}
         />
         <h1 className="text-3xl text-center font-bold mb-8 text-black">
           {edit ? "Edit Profile" : "Create Profile"}
         </h1>
-        <form onSubmit={handleSubmit}>
-          <Input
-            id="name"
-            type="text"
-            onBlur={handleFullNameBlur}
-            onChange={handleFullNameUserInput}
-            value={fullNameValue}
-            hasError={fullNameHasError}
-            placeholder="Full Name"
-            icon={icons.user}
-            error={fullNameHasError && "Please enter a valid Full Name."}
-          />
-          <Input
-            id="nickname"
-            type="text"
-            placeholder="Nickname"
-            icon={icons.user}
-            onBlur={handleNicknameBlur}
-            onChange={handleNicknameUserInput}
-            hasError={nicknameHasError}
-            value={nicknameValue}
-            error={nicknameHasError && "Please enter a valid Nickname."}
-          />
-          <Input
-            id="email"
-            type="email"
-            onBlur={handleEmailBlur}
-            onChange={handleEmailUserInput}
-            value={emailValue}
-            hasError={emailHasError}
-            placeholder="Email"
-            icon={icons.email}
-            error={emailHasError && "Please enter a valid email address."}
-          />
-          <Input
-            id="date"
-            type="date"
-            placeholder="Date of Birth"
-            icon={icons.calendar3}
-            onBlur={handleDateBlur}
-            onChange={handleDateUserInput}
-            hasError={dateHasError}
-            value={dateValue}
-            error={dateHasError && "Please enter a valid Date of Birth."}
-          />
-          <Input
-            id="phone"
-            type="tel"
-            onBlur={handlePhoneNumberBlur}
-            onChange={handlePhoneNumberUserInput}
-            value={phoneNumberValue}
-            hasError={phoneNumberHasError}
-            placeholder="Phone Number"
-            icon={icons.telephone}
-            error={phoneNumberHasError && "Please enter a valid phone number."}
-          />
-          <button
-            type="submit"
-            className={`w-full ${
-              edit
-                ? "bg-green-500 hover:bg-green-600"
-                : "bg-blue-500 hover:bg-blue-600"
-            } text-white font-bold py-3 rounded-full mt-4`}
-          >
-            {edit ? "Update Profile" : "Submit"}
-          </button>
-        </form>
+        <Formik
+          initialValues={{ firstName: '', lastName: '', bvn: '', dob: '', phone: '' }}
+          onSubmit={handleSubmit}  // Call handleSubmit on form submission
+          validationSchema={individualSchema}
+        >
+          {({ errors, touched, handleBlur, handleChange, values }) => (
+            <Form>
+              {['firstName', 'lastName'].map((field) => (
+                <Input
+                  key={field}
+                  id={field}
+                  name={field}
+                  type={'text'}
+                  placeholder={field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, ' $1')}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values[field]}
+                  icon={icons[field]}
+                  error={errors[field] && touched[field] ? errors[field] : undefined}
+                />
+              ))}
+              <Input
+                key={'bvnfiled'}
+                id='bvn'
+                name={'bvn'}
+                type={'number'}
+                placeholder={'Bank Verification Number (bvn)'}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.bvn}
+                icon={icons.bank}
+                error={errors.bvn && touched.bvn ? errors.bvn : undefined}
+              />
+              <Input
+                key={'phone'}
+                id='phone'
+                name={'phone'}
+                type={'number'}
+                placeholder={'Phone Number'}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.phone}
+                icon={icons.telephone}
+                error={errors.phone && touched.phone ? errors.phone : undefined}
+              />
+              <DateInput
+                key={'dateofbirth'}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.dob}
+              />
+
+              <PrimaryBtn type="submit" disabled={isPending}>
+                {isPending ? 'Signing up...' : 'Sign Up'}
+              </PrimaryBtn>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );

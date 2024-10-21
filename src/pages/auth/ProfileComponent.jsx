@@ -16,12 +16,14 @@ const ProfileComponent = ({ initialImage, onImageChange, editIcon }) => {
     const file = event.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
+      // console.log(imageUrl);
       setProfileImage(imageUrl);
       if (onImageChange) {
-        onImageChange(imageUrl); // Notify parent component of image change
+        onImageChange(file); // Notify parent component of image change
       }
     }
-  };
+
+  }
 
   return (
     <div className="flex justify-center mb-4">
