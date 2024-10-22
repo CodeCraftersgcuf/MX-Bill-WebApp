@@ -14,6 +14,7 @@ const API_ENDPOINTS = {
   ACCOUNT_MANAGEMENT: {
     RequestBvnConsent: API_DOMAIN + '/accounts/bvn-consent',
     CreateIndividualAccount: API_DOMAIN + '/accounts/individual',
+    CreateCorporateAccount: API_DOMAIN + '/client/corporate',
     ReleaseAccount: API_DOMAIN + '/accounts/release',
     DeleteAccount: API_DOMAIN + '/accounts',
   },

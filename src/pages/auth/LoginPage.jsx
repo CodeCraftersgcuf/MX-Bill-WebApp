@@ -15,7 +15,9 @@ const LoginPage = () => {
   const { mutate: login, isPending } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      console.log(data);
+      console.log(data.user.id);
+      localStorage.setItem("user_id", data.user.id);
+
       toast.success("Login successful!");
       // Store token in localStorage
       localStorage.setItem("authToken", data.token);
