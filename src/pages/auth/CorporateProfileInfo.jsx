@@ -28,10 +28,7 @@ const CorporateProfileInfo = ({ edit }) => {
 
   const handleSubmit = (data) => {
     console.log(data);
-    // if (!image) {
-    //   toast.error("Please upload an image")
-    //   return
-    // }
+
     const formData = new FormData();
     const userId = localStorage.getItem("user_id");
 
@@ -48,13 +45,6 @@ const CorporateProfileInfo = ({ edit }) => {
 
     console.log(formData);
     mutate(formData);
-
-    // if (data.dob === )
-    // toast.success(
-    //   edit
-    //     ? "Profile information updated successfully!"
-    //     : "Profile created successfully!"
-    // );
   };
 
   return (
