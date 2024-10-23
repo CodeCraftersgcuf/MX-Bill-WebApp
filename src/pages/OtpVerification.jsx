@@ -4,8 +4,9 @@ import { verifyEmailOtp, resendOtp } from '../util/queries/authMutations';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/PrimaryBtn';
+import AuthFlow from './auth/AuthFlow/AuthFlow';
 
-function OtpVerification({ numberOfDigits = 4 }) {
+function OtpVerification({ numberOfDigits = 4, isOtp, onSuccess}) {
   const [otp, setOtp] = useState(new Array(numberOfDigits).fill(""));
   const [resendTimer, setResendTimer] = useState(10);  // 60-second timer state
   const [resendInterval, setResendInterval] = useState(null);
@@ -67,6 +68,10 @@ function OtpVerification({ numberOfDigits = 4 }) {
 
   // Submit OTP for verification
   const handleOtpSubmit = () => {
+    if(otp){
+      onSuccess();
+      return;
+    }
     const otpValue = otp.join("");
     if (otpValue.length === numberOfDigits) {
       verifyOtpMutation({
