@@ -51,3 +51,10 @@ export const individualSchema = Yup.object().shape({
     .matches(/^\d{10}$/)
     .required('Phone number is required'),
 });
+
+export const emailValidation = Yup.string()
+  .matches(
+    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    "Invalid email address"
+  )
+  .required("Email is required");

@@ -22,7 +22,8 @@ import Logout from "./pages/Logout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import HelpCenter from "./pages/HelpCenter";
 import OtpVerification from "./pages/OtpVerification";
-import AccountType from "./pages/auth/AccountType";
+import AuthFlow from "./pages/auth/AuthFlow/AuthFlow";
+import AccountType from "./pages/auth/AccountType"
 
 const queryClient = new QueryClient();
 
@@ -46,11 +47,12 @@ const App = () => {
     { path: "/login", element: <LoginPage /> },
     { path: "/signup", element: <SignupPage /> },
     { path: "/colorscheme", element: <ColorScheme /> },
-    { path: "/otp-verfication", element: <OtpVerification /> },
+    { path: "/otp-verification", element: <OtpVerification /> },
+    { path: "/authFlow", element: <AuthFlow /> },
+    { path: '/type' , element: <AccountType /> },
     // { path: "/reset", element: <ResetPassword /> },
     // { path: "/resetpassword", element: <ResetPassword /> },
-    // independent route
-    { path: '/type', element: <AccountType />},
+
     // Redirect '/' to login if not authenticated
     {
       path: "/",
