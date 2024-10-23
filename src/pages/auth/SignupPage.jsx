@@ -17,6 +17,7 @@ const SignupPage = () => {
     mutationFn: registerUser,
     onSuccess: (data, variables) => {  // `variables` will hold the form data, including the email
       console.log('Signup success response:', data);
+      localStorage.setItem("user_id", data.user.id);
       const email = variables.email;  // Use the email from form data
       if (data?.user_id) {
         toast.success(data.message || "Signup successful!");

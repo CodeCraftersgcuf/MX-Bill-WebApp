@@ -23,7 +23,7 @@ function OtpVerification({ numberOfDigits = 4 }) {
     onSuccess: (data) => {
       console.log(data);
       toast.success("OTP verified successfully!");
-      navigate("/dashboard");
+      navigate("/profileinfo");
     },
     onError: (error) => {
       console.log(error);

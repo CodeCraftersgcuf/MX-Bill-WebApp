@@ -37,3 +37,17 @@ export const forgetPasswordSchema = Yup.object().shape({
     .oneOf([Yup.ref("newPassword"), null], "Passwords must match")
     .required("Confirm password is required"),
 });
+
+export const individualSchema = Yup.object().shape({
+  firstName: Yup.string().required('First name is required'),
+  lastName: Yup.string().required('Last name is required'),
+  rcNumber: Yup.string().required('RCN number is required'),
+  companyName: Yup.string().required('Company name is required'),
+  bvn: Yup.string()
+    .matches(/^\d{11}$/)
+    .required('BVN is required'),
+  dob: Yup.string().required('Incorporation Date is required'),
+  phone: Yup.string()
+    .matches(/^\d{10}$/)
+    .required('Phone number is required'),
+});
