@@ -22,7 +22,7 @@ import Logout from "./pages/Logout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import HelpCenter from "./pages/HelpCenter";
 import OtpVerification from "./pages/OtpVerification";
-
+import AuthFlow from "./pages/auth/AuthFlow/AuthFlow";
 const queryClient = new QueryClient();
 
 // Helper to check if user is authenticated
@@ -45,7 +45,8 @@ const App = () => {
     { path: "/login", element: <LoginPage /> },
     { path: "/signup", element: <SignupPage /> },
     { path: "/colorscheme", element: <ColorScheme /> },
-    { path: "/otp-verfication", element: <OtpVerification /> },
+    { path: "/otp-verification", element: <OtpVerification /> },
+    { path: "/authFlow", element: <AuthFlow /> },
     // { path: "/reset", element: <ResetPassword /> },
     // { path: "/resetpassword", element: <ResetPassword /> },
 
