@@ -1,6 +1,6 @@
 const Input = ({ id, label, error, icon, type, ...props }) => {
   return (
-    <div className="mb-4">
+    <div className="">
       {type === "checkbox" ? (
         <div className="flex items-center">
           <input type="checkbox" id={id} className="mr-2 bg-transparent" {...props} />

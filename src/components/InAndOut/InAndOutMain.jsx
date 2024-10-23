@@ -2,7 +2,7 @@ import InOutTop from "./InOutTop";
 import InAndOutCard from "./InAndOutCard";
 const InAndOutMain = () => {
   return (
-    <div className="w-3/5 px-[32px]">
+    <div className="ps-3">
       <InOutTop />
       <div className="mt-5">
         <InAndOutCard />

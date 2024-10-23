@@ -34,18 +34,16 @@ export const verifyEmailOtp = async (data) => {
   }
 };
 
-export const resendOtp= async (data)=>{
-  try{
-    const response = await axios.post(API_ENDPOINTS.AUTH.ResendOtp,data);
+export const resendOtp = async (data) => {
+  try {
+    const response = await axios.post(API_ENDPOINTS.AUTH.ResendOtp, data);
     return response.data;
-  }catch(error){
+  } catch (error) {
     throw Error(
       error?.response?.data?.message || 'Resend OTP failed due to unknown error'
     );
   }
 };
-
- 
 
 // Forgot Password: Send OTP to user's email
 export const forgotPassword = async (data) => {
@@ -54,7 +52,8 @@ export const forgotPassword = async (data) => {
     return response.data;
   } catch (error) {
     throw Error(
-      error?.response?.data?.message || 'Failed to send OTP due to unknown error'
+      error?.response?.data?.message ||
+        'Failed to send OTP due to unknown error'
     );
   }
 };
@@ -62,7 +61,10 @@ export const forgotPassword = async (data) => {
 // Verify OTP for password reset
 export const verifyPasswordOtp = async (data) => {
   try {
-    const response = await axios.post(API_ENDPOINTS.AUTH.VerifyPasswordOtp, data);
+    const response = await axios.post(
+      API_ENDPOINTS.AUTH.VerifyPasswordOtp,
+      data
+    );
     return response.data;
   } catch (error) {
     throw Error(
@@ -78,7 +80,8 @@ export const resetPassword = async (data) => {
     return response.data;
   } catch (error) {
     throw Error(
-      error?.response?.data?.message || 'Password reset failed due to unknown error'
+      error?.response?.data?.message ||
+        'Password reset failed due to unknown error'
     );
   }
 };

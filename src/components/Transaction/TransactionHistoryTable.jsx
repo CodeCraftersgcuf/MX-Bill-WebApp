@@ -6,7 +6,7 @@ const TransactionHistoryTable = () => {
   console.log(Transactions)
   return (
     <div className={`shadow-md my-5 rounded-md ${styles.scrollableTable}`}>
-      <table className="w-full table-auto">
+      <table className={`w-full table-auto`}>
         <thead>
           <tr className="text-left bg-blue-600 text-white">
             <th className="py-3 px-4">Transaction</th>

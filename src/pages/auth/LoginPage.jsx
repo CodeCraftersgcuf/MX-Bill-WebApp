@@ -15,9 +15,10 @@ const LoginPage = () => {
   const { mutate: login, isPending } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      console.log(data);
-      toast.success("Login successful!");
+      console.log(data.user.id);
+      localStorage.setItem("user_id", data.user.id);
 
+      toast.success("Login successful!");
       // Store token in localStorage
       localStorage.setItem("authToken", data.token);
 
@@ -57,6 +58,7 @@ const LoginPage = () => {
             <Form>
               {["email", "password"].map((field) => (
                 <Input
+                
                   key={field}
                   id={field}
                   // label={field}
@@ -69,22 +71,31 @@ const LoginPage = () => {
                   icon={field === "email" ? icons.email : icons.padlock}
                 />
               ))}
-              <Input
-                type="checkbox"
-                name="rememberMe"
-                label={"Remember Me"}
-                onChange={handleChange}
-                checked={values.rememberMe}
-              />
+              <div className="flex justify-between items-center">
+                <Input
+                  type="checkbox"
+                  name="rememberMe"
+                  label={"Remember Me"}
+                  onChange={handleChange}
+                  checked={values.rememberMe}
+                />
+                <button
+                  className="text-blue-700 cursor-pointer"
+                  onClick={() => navigate("/forgot-password", {
+                    state: {
+                      email: values.email,
+                    }
+                  })}
+                >
+                  Forgot the password?
+                </button>
+              </div>
               <PrimaryBtn type="submit" disabled={isPending}>
                 {isPending ? "Logging In..." : "Login"}
               </PrimaryBtn>
             </Form>
           )}
         </Formik>
-        <div className="my-4 text-blue-700 cursor-pointer">
-          Forgot Password?
-        </div>
         <div className="text-black">
           Dont have an account?{" "}
           <Link to="/signup" className="text-blue-500 hover:text-blue-700">
