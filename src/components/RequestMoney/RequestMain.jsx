@@ -4,7 +4,7 @@ import { icons } from "../../constants";
 
 const RequestForMoney = () => {
   return <>
-  <div className="w-3/5 px-[34px]">
+  <div className="ps-3">
     <div className="mt-8 flex justify-between items-center">
       <h1 className="text-xl font-urbanist-bold">Request Money</h1>
       <SearchField icon={icons.search} />
