@@ -7,7 +7,7 @@ import { forgetPasswordSchema } from "../../util/validationSchemas"; // Forget p
 import PrimaryBtn from "../../components/PrimaryBtn";
 import { useMutation } from "@tanstack/react-query";
 import { icons } from "../../constants";
-import { resetPassword } from "../../util/queries/authMutations"; // Assuming you have a resetPassword mutation
+import { resetPassword } from "../../util/queries/forgetPassword"; // Assuming you have a resetPassword mutation
 
 const ForgotPasswordPage = () => {
   const navigate = useNavigate();

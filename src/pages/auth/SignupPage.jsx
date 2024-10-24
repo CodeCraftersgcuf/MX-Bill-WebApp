@@ -22,7 +22,7 @@ const SignupPage = () => {
       if (data?.user_id) {
         toast.success(data.message || "Signup successful!");
         // Pass the email from form data explicitly
-        navigate('/otp-verfication', { state: { userId: data.user_id, email } });
+        navigate('/otp-verification', { state: { userId: data.user_id, email } });
       } else {
         toast.error('Signup successful, but no user ID found.');
       }

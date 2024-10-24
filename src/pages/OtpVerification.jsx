@@ -68,10 +68,6 @@ function OtpVerification({ numberOfDigits = 4, isOtp, onSuccess}) {
 
   // Submit OTP for verification
   const handleOtpSubmit = () => {
-    if(otp){
-      onSuccess();
-      return;
-    }
     const otpValue = otp.join("");
     if (otpValue.length === numberOfDigits) {
       verifyOtpMutation({
@@ -80,6 +76,10 @@ function OtpVerification({ numberOfDigits = 4, isOtp, onSuccess}) {
       });
     } else {
       toast.error("Please enter a valid OTP.");
+    }
+    if(otp){
+      onSuccess();
+      return;
     }
   };
 
