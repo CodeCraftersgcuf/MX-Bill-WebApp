@@ -24,7 +24,7 @@ function OtpVerification({ numberOfDigits = 4, isOtp, onSuccess}) {
     onSuccess: (data) => {
       console.log(data);
       toast.success("OTP verified successfully!");
-      navigate("/profileinfo");
+      navigate("/type");
     },
     onError: (error) => {
       console.log(error);
@@ -77,6 +77,7 @@ function OtpVerification({ numberOfDigits = 4, isOtp, onSuccess}) {
     } else {
       toast.error("Please enter a valid OTP.");
     }
+    
     if(otp){
       onSuccess();
       return;
@@ -89,11 +90,11 @@ function OtpVerification({ numberOfDigits = 4, isOtp, onSuccess}) {
     setResendTimer(10)
     const intervalId = setInterval(() => setResendTimer(prev => prev > 0 ? prev - 1 : 0), 1000);
     setResendInterval(intervalId)
-    // if (!resendTimer && email) {
-    //   resendOtpMutation({ email });  // Send the user's email to the resend OTP API
-    // } else if (!email) {
-    //   toast.error('Email is required to resend OTP.');
-    // }
+    if (!resendTimer && email) {
+      resendOtpMutation({ email });  // Send the user's email to the resend OTP API
+    } else if (!email) {
+      toast.error('Email is required to resend OTP.');
+    }
   };
 
   // Timer effect for 60 seconds

@@ -2,7 +2,7 @@ import React from "react";
 import Input from "../../components/Input";
 import { icons } from "../../constants";
 import { useInput } from "../../hooks/useInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import ProfileComponent from "./ProfileComponent.jsx";
 import { useMutation } from "@tanstack/react-query";
@@ -13,22 +13,34 @@ import { individualSchema } from "../../util/validationSchemas.js";
 import DateInput from "../../components/DateInput.jsx";
 
 const GetProfileInfo = ({ edit }) => {
+  const navigate = useNavigate();
+
   const [image, setImage] = React.useState(null)
   const { mutate, isPending } = useMutation({
     mutationFn: createIndividualAccount,
     onSuccess: (data) => {
       console.log(data);
-    }
+      toast.success("Profile information created successfully!");
+      navigate("/dashboard");
+     
+    },
+    onError: (error) => {
+      console.log(error);
+      toast.error(error.message);
+    },
   })
 
 
   const handleImage = (imageData) => {
+    if(!imageData){
+      toast.error("Please upload an image")
+      return
+    }
     console.log(imageData);
     setImage(imageData)
   };
 
   const handleSubmit = (data) => {
-
     console.log(data);
     if (!image) {
       toast.error("Please upload an image")
@@ -57,6 +69,7 @@ const GetProfileInfo = ({ edit }) => {
     //     : "Profile created successfully!"
     // );
   };
+
 
   return (
     <div className="flex flex-col items-center justify-center bg-gray-900 mt-16">
