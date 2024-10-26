@@ -7,7 +7,7 @@ const UserProfile = () => {
   return (
     <div className='min-h-screen flex'>
         <LeftSideBar />
-        <section className='w-3/4 mx-10 my-5'>
+        <section className='w-3/4 ms-4 my-5'>
            <TopCard />
            <ListItems />
         </section>

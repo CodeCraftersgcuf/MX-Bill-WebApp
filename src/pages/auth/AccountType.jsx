@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AuthCardTop from "../../components/Auth components/AuthCardTop";
-import { Link } from "react-router-dom";
 
 const AccountType = () => {
   // State to track the selected account type
@@ -18,8 +17,8 @@ const AccountType = () => {
         <form>
           {/* Individual Account Option */}
           <div
-            className={`flex justify-between shadow bg-white rounded-xl border-slate-100 px-3 py-3 cursor-pointer ${
-              selectedAccount === "individual" ? "bg-blue-200" : ""
+            className={`flex justify-between shadow rounded-xl px-3 py-3 cursor-pointer ${
+              selectedAccount === "individual" ? "bg-blue-200" : "border-slate-100"
             }`}
             onClick={() => handleSelection("individual")}
           >
@@ -38,8 +37,8 @@ const AccountType = () => {
 
           {/* Cooperative Account Option */}
           <div
-            className={`flex justify-between shadow bg-white rounded-xl border-slate-100 px-3 py-3 cursor-pointer ${
-              selectedAccount === "cooperative" ? "bg-blue-200" : ""
+            className={`flex justify-between shadow rounded-xl px-3 py-3 cursor-pointer ${
+              selectedAccount === "cooperative" ? "bg-blue-200" : "border-slate-100"
             }`}
             onClick={() => handleSelection("cooperative")}
           >
@@ -53,7 +52,7 @@ const AccountType = () => {
             />
           </div>
           <button
-            class="px-4 py-2 font-urbanist-bold rounded-lg mt-4 bg-blue-500 hover:bg-blue-600 active:opacity-70 disabled:opacity-50 text-white"
+            className="px-4 py-2 font-urbanist-bold rounded-lg mt-4 bg-blue-500 hover:bg-blue-600 active:opacity-70 disabled:opacity-50 text-white"
             type="submit"
           >
             Next

@@ -14,7 +14,7 @@ const DashBoard = () => {
             <div className="flex-1 overflow-x-hidden">
               <MiddleDashBoard />
             </div>
-            <div className="mx-5 xl:w-[22%] xl:block 2xl:w-1/4 hidden">
+            <div className="mx-5 xl:w-[23%] xl:block 2xl:w-1/4 hidden">
               <RightSideBar />
             </div>
           </div>

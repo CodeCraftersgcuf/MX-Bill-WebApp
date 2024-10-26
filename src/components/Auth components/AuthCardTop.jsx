@@ -6,7 +6,7 @@ const AuthCardTop = ({ topHeading }) => {
         <img src={logo} alt="logo" className="" width={100} />
       </div>
       <h1 className="text-3xl text-center font-bold mb-8 text-black">
-        Choose your account type
+        {topHeading}
       </h1>
     </div>
   );

@@ -10,7 +10,7 @@ const LeftSideBar = ({ currentTab = "Home" }) => {
 
   return (
     <div className="lg:w-1/4 xl:w-1/5 flex flex-col gap-3 pt-5 bg-slate-100 ps-4">
-      <Link className="mb-4 me-4 lg:me-0">
+      <Link to={'/dashboard'} className="mb-4 me-4 lg:me-0">
         <div className="flex items-center">
           <div className="w-10 lg:w-14">
             <img src={icons.activity2} alt="" />
