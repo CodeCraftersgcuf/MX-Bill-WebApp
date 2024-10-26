@@ -9,7 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { createCorporateAccount } from "../../util/queries/accountsMutations.js";
 import { Formik, Form } from "formik";
 import PrimaryBtn from "../../components/PrimaryBtn.jsx";
-import { individualSchema } from "../../util/validationSchemas.js";
+import { corporateSchema, individualSchema } from "../../util/validationSchemas.js";
 import DateInput from "../../components/DateInput.jsx";
 
 const CorporateProfileInfo = ({ edit }) => {
@@ -69,7 +69,7 @@ const CorporateProfileInfo = ({ edit }) => {
             rcNumber:"",
           }}
           onSubmit={handleSubmit} // Call handleSubmit on form submission
-          validationSchema={individualSchema}
+          validationSchema={corporateSchema}
         >
           {({ errors, touched, handleBlur, handleChange, values }) => (
             <Form>
