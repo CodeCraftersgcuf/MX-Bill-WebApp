@@ -13,7 +13,7 @@ const API_ENDPOINTS = {
   },
   USER_INFORMATION:{
     UserDetail: API_DOMAIN + '/user-details',
-    UserAccount: API_DOMAIN + ' /accountEnquiry',
+    UserAccount: API_DOMAIN + '/accountEnquiry',
   },
   ACCOUNT_MANAGEMENT: {
     RequestBvnConsent: API_DOMAIN + '/accounts/bvn-consent',

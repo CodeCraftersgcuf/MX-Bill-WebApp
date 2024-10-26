@@ -24,7 +24,7 @@ const RightSideBar = () => {
       
       if (userAccount) {
         console.log("Fetching account details for:", userAccount.account_number); // Debugging log
-        fetchAccountDetails(userAccount.account_number);
+        fetchAccountDetails({ accountNumber: userAccount.account_number, userId });
       } else {
         console.error("No userAccount or account_number available."); // Error log if account details not found
       }
