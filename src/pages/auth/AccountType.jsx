@@ -30,8 +30,8 @@ const AccountType = () => {
         <form onSubmit={handleNext}>
           {/* Individual Account Option */}
           <div
-            className={`flex justify-between shadow bg-white rounded-xl border-slate-100 px-3 py-3 cursor-pointer ${
-              selectedAccount === "individual" ? "bg-blue-200" : ""
+            className={`flex justify-between shadow rounded-xl px-3 py-3 cursor-pointer ${
+              selectedAccount === "individual" ? "bg-blue-200" : "border-slate-100"
             }`}
             onClick={() => handleSelection("individual")}
           >
@@ -50,8 +50,8 @@ const AccountType = () => {
 
           {/* Cooperative Account Option */}
           <div
-            className={`flex justify-between shadow bg-white rounded-xl border-slate-100 px-3 py-3 cursor-pointer ${
-              selectedAccount === "cooperative" ? "bg-blue-200" : ""
+            className={`flex justify-between shadow rounded-xl px-3 py-3 cursor-pointer ${
+              selectedAccount === "cooperative" ? "bg-blue-200" : "border-slate-100"
             }`}
             onClick={() => handleSelection("cooperative")}
           >

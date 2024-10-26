@@ -24,6 +24,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import HelpCenter from "./pages/HelpCenter";
 import OtpVerification from "./pages/OtpVerification";
 import AccountType from "./pages/auth/AccountType"
+import AdditionalInfo from "./pages/AdditionalInfo";
 
 const queryClient = new QueryClient();
 
@@ -49,7 +50,6 @@ const App = () => {
     { path: "/colorscheme", element: <ColorScheme /> },
     { path: "/otp-verification", element: <OtpVerification /> },
     { path: '/type' , element: <AccountType /> },
-    { path: '/forgot-password', element: <AuthFlow />},
     // { path: "/reset", element: <ResetPassword /> },
     // { path: "/resetpassword", element: <ResetPassword /> },
 
