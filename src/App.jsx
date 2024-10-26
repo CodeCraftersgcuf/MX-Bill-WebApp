@@ -24,6 +24,7 @@ import HelpCenter from "./pages/HelpCenter";
 import OtpVerification from "./pages/OtpVerification";
 import AuthFlow from "./pages/auth/AuthFlow/AuthFlow";
 import AccountType from "./pages/auth/AccountType"
+import AdditionalInfo from "./pages/AdditionalInfo";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => {
     { path: "/otp-verification", element: <OtpVerification /> },
     { path: "/authFlow", element: <AuthFlow /> },
     { path: '/type' , element: <AccountType /> },
+    { path: '/additionalinfo', element: <AdditionalInfo />},
     // { path: "/reset", element: <ResetPassword /> },
     // { path: "/resetpassword", element: <ResetPassword /> },
 
