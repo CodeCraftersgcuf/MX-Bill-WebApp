@@ -21,7 +21,7 @@ const GetProfileInfo = ({ edit }) => {
     onSuccess: (data) => {
       console.log(data);
       toast.success("Profile information created successfully!");
-      navigate("/dashboard");
+        // navigate("/dashboard");
      
     },
     onError: (error) => {
