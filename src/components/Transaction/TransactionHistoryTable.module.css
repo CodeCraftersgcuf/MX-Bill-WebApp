@@ -1,19 +1,19 @@
-/* TransactionHistoryTable.module.css */
 .scrollableTable {
-    max-height: 500px;
-    overflow-y: auto;
-  }
-  
-  .scrollableTable::-webkit-scrollbar {
-    width: 8px; 
-  }
-  
-  .scrollableTable::-webkit-scrollbar-thumb {
-    background-color: #1e90ff; 
-    border-radius: 10px;
-  }
-  
-  .scrollableTable::-webkit-scrollbar-track {
-    background-color: #f0f0f0; 
-  }
-  
+  max-height: 500px; /* Limit the height for the scrollable area */
+  overflow-y: auto; /* Allow vertical scrolling */
+  width: 100%; /* Ensure the table body takes the full width */
+}
+
+/* Apply custom scrollbar styles */
+.scrollableTable::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.scrollableTable::-webkit-scrollbar-thumb {
+  background-color: #1e90ff; 
+  border-radius: 10px;
+}
+
+.scrollableTable::-webkit-scrollbar-track {
+  background-color: #f0f0f0; 
+}

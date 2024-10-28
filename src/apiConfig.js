@@ -11,9 +11,14 @@ const API_ENDPOINTS = {
     VerifyPasswordOtp: API_DOMAIN + '/auth/reset-password-otp-verification',
     ResetPassword: API_DOMAIN + '/auth/reset-password',
   },
+  USER_INFORMATION:{
+    UserDetail: API_DOMAIN + '/user-details',
+    UserAccount: API_DOMAIN + '/accountEnquiry',
+  },
   ACCOUNT_MANAGEMENT: {
     RequestBvnConsent: API_DOMAIN + '/accounts/bvn-consent',
     CreateIndividualAccount: API_DOMAIN + '/accounts/individual',
+    CreateCorporateAccount: API_DOMAIN + '/client/corporate',
     ReleaseAccount: API_DOMAIN + '/accounts/release',
     DeleteAccount: API_DOMAIN + '/accounts',
   },

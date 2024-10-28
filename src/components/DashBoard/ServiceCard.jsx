@@ -2,7 +2,7 @@
 const ServiceCard = ({ imageSrc, textContent }) => {
   return (
     <div className="flex flex-col items-center p-5 transition-transform cursor-pointer hover:scale-110">
-      <div className="md:w-3/5">
+      <div className="w-14">
         <img
           src={imageSrc}
           alt=""
@@ -12,7 +12,7 @@ const ServiceCard = ({ imageSrc, textContent }) => {
           }}
         />
       </div>
-      <div className="font-urbanist-bold md:text-sm lg:text-lg mt-3">{textContent}</div>
+      <div className="font-urbanist-bold text-sm lg:text-lg mt-3">{textContent}</div>
     </div>
   );
 };

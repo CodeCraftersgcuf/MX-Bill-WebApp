@@ -4,8 +4,9 @@ import { verifyEmailOtp, resendOtp } from '../util/queries/authMutations';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PrimaryBtn from '../components/PrimaryBtn';
+import AuthFlow from './auth/AuthFlow/AuthFlow';
 
-function OtpVerification({ numberOfDigits = 4 }) {
+function OtpVerification({ numberOfDigits = 4, isOtp, onSuccess}) {
   const [otp, setOtp] = useState(new Array(numberOfDigits).fill(""));
   const [resendTimer, setResendTimer] = useState(10);  // 60-second timer state
   const [resendInterval, setResendInterval] = useState(null);
@@ -23,7 +24,7 @@ function OtpVerification({ numberOfDigits = 4 }) {
     onSuccess: (data) => {
       console.log(data);
       toast.success("OTP verified successfully!");
-      navigate("/dashboard");
+      navigate("/type");
     },
     onError: (error) => {
       console.log(error);
@@ -76,6 +77,11 @@ function OtpVerification({ numberOfDigits = 4 }) {
     } else {
       toast.error("Please enter a valid OTP.");
     }
+    
+    if(otp){
+      onSuccess();
+      return;
+    }
   };
 
   // Resend OTP handler
@@ -84,11 +90,11 @@ function OtpVerification({ numberOfDigits = 4 }) {
     setResendTimer(10)
     const intervalId = setInterval(() => setResendTimer(prev => prev > 0 ? prev - 1 : 0), 1000);
     setResendInterval(intervalId)
-    // if (!resendTimer && email) {
-    //   resendOtpMutation({ email });  // Send the user's email to the resend OTP API
-    // } else if (!email) {
-    //   toast.error('Email is required to resend OTP.');
-    // }
+    if (!resendTimer && email) {
+      resendOtpMutation({ email });  // Send the user's email to the resend OTP API
+    } else if (!email) {
+      toast.error('Email is required to resend OTP.');
+    }
   };
 
   // Timer effect for 60 seconds

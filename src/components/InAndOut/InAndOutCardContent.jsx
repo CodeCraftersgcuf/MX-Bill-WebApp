@@ -11,7 +11,7 @@ const InAndOutCardContent = ({
   const expenseColor = 'text-red'
   return (
     <div {...props}>
-      <div className="bg-slate-100 flex items-center justify-around py-3">
+      <div className="bg-slate-100 flex items-center justify-around py-3 shadow-md border border-slate-300">
         <div className="w-16">
           <img src={image} alt="" />
         </div>

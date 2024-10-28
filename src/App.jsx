@@ -16,11 +16,15 @@ import RequestMoney from "./pages/RequestMoney";
 import InAndOut from "./pages/InAndOut";
 import UserProfile from "./pages/UserProfile";
 import Notifications from "./pages/Notifications";
-// import ResetPassword from "./pages/ResetPassword";
+import CorporateProfileInfo from './pages/auth/CorporateProfileInfo';
+// import ResetPassword from "./pages/auth/ResetPassword";
+import AuthFlow from './pages/auth/AuthFlow/AuthFlow';
 import Logout from "./pages/Logout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import HelpCenter from "./pages/HelpCenter";
 import OtpVerification from "./pages/OtpVerification";
+import AccountType from "./pages/auth/AccountType"
+import AdditionalInfo from "./pages/AdditionalInfo";
 
 const queryClient = new QueryClient();
 
@@ -44,7 +48,8 @@ const App = () => {
     { path: "/login", element: <LoginPage /> },
     { path: "/signup", element: <SignupPage /> },
     { path: "/colorscheme", element: <ColorScheme /> },
-    { path: "/otp-verfication", element: <OtpVerification /> },
+    { path: "/otp-verification", element: <OtpVerification /> },
+    { path: '/type' , element: <AccountType /> },
     // { path: "/reset", element: <ResetPassword /> },
     // { path: "/resetpassword", element: <ResetPassword /> },
 
@@ -68,6 +73,14 @@ const App = () => {
       element: (
         // <ProtectedRoute>
         <GetProfileInfo />
+        // </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/corporateProfileInfo",
+      element: (
+        // <ProtectedRoute>
+        <CorporateProfileInfo />
         // </ProtectedRoute>
       ),
     },
